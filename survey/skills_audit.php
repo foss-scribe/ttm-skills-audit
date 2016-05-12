@@ -18,14 +18,54 @@ include('inc/db.class.php');
 if (isset($_POST['g-recaptcha-response']))
 {
 	//form has been sent
+	
+	//test captcha
+	//create local variable of reCAPTCHA response
+	$response_string = $_POST["g-recaptcha-response"];
 
-	//commit to DB
-	//TBA
+	//assign const SECRET_KEY to local variable
+	$secret_key = SECRET_KEY;
 
-	//display thank you message
-	require_once('views/header.php');
-	require_once('views/message_form_sent.php');
-	require_once('views/footer.php');
+	//create a correctly formatted URL for API call
+	$capchaAPICcall = "https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_string";
+
+	//get the response data from google
+	$data = file_get_contents($capchaAPICcall);
+
+	//process the JSON into a PHP array
+	$result = json_decode($data, true);
+	
+	//validate captcha
+	if ($result['success'] != 1)
+	{
+    	//captcha failed so error our and die!
+
+		$message['title'] = "reCAPTCHA failed";
+		$message['body'] = "<p>You failed the reCAPTCHA test, please go back and try again</p>";
+
+		require_once('views/header.php');
+		require_once('views/error.php');
+		require_once('views/footer.php');
+        die();
+
+    } else {
+		//captcha passed, write to database
+		//TBA
+
+		//if write to DB succeeds, then display success message
+		require_once('views/header.php');
+		require_once('views/message_form_sent.php');
+		require_once('views/footer.php');
+
+		//elseif commit to DB fails, then error out and die!
+		//require_once('views/header.php');
+		//require_once('views/error.php');
+		//require_once('views/footer.php');
+	}
+
+
+
+
 
 } else {
 	//form not sent
