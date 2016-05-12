@@ -15,7 +15,7 @@ include('inc/db.class.php');
 
 
 //Test if form has been submitted
-if (isset($_POST['submit']))
+if (isset($_POST['g-recaptcha-response']))
 {
 	//form has been sent
 
@@ -39,10 +39,14 @@ if (isset($_POST['submit']))
 
 		//validate the email
 		if (!filter_var($getEmail, FILTER_VALIDATE_EMAIL)) {
-  			$emailErr = "Invalid email format"; 
+  			//$emailErr = "Invalid email format"; 
   			//echo $emailErr;
+
+			$message['title'] = "Invalid email address";
+			$message['body'] = "<p>You have entered an invalid email address. Please go back and try again.</p>";
+
 			require_once('views/header.php');
-			require_once('views/sorry.php');
+			require_once('views/error.php');
 			require_once('views/footer.php');
 			die();
 		} else {
@@ -77,8 +81,13 @@ if (isset($_POST['submit']))
 
 	} else {
 		//no email so we kill the process
+
+
+		$message['title'] = "Not a registered user";
+		$message['body'] = file_get_contents('views/sorry.php');
+
 		require_once('views/header.php');
-		require_once('views/sorry.php');
+		require_once('views/error.php');
 		require_once('views/footer.php');
 		die();
 	}
