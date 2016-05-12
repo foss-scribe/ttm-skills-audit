@@ -55,8 +55,6 @@
 
 <?php include('interests.php'); ?>
 
-<!-- ENERGY -->
-
 
 
 
@@ -101,7 +99,7 @@
   </div>
 
   <hr>
-	<div class="g-recaptcha" data-sitekey="6LcNQh4TAAAAAMS_bpAJOvzpdMhj7Bnc_YBWz9MI"></div>	
+	<div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>	
   <hr>
 <button type="clear" name="clear" class="btn btn-default">Clear</button>
 <button type="submit" name="submit" class="btn btn-primary" value="true">Submit</button>
