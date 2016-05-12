@@ -62,7 +62,7 @@
 
 <div class="col-md-6">
 
-<h3>My Interests</h3>
+<h3>Your Interests</h3>
 
 <?php include('interests.php'); ?>
 
@@ -72,7 +72,7 @@
 </div>
 <div class="col-md-6">
 
-<h3>Areas where I'd like to contribute</h3>
+<h3>Areas where you'd like to contribute</h3>
 
 
 <?php include('skills.php'); ?>

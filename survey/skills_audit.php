@@ -8,7 +8,7 @@ include('inc/config.dev.php');
 //Load database class
 include('inc/db.class.php');
 
-//$db = new DB();
+$db = new DB();
 
 //print_r($db); //debug DB object
 
@@ -104,12 +104,12 @@ if (isset($_POST['g-recaptcha-response']))
 
 
 		//query to generate skills
-		//	$db->query('SELECT id, skill, description FROM ttm_skills');
-		//	$skills = $db->resultset();
+			$db->query('SELECT id, skill, description FROM ttm_skills');
+			$skills = $db->resultset();
 
 		//query to generate skills
-		//	$db->query('SELECT id, interest, description FROM ttm_interests');
-		//	$interests = $db->resultset();
+			$db->query('SELECT id, interest, description FROM ttm_interests');
+			$interests = $db->resultset();
 
 		//print_r($rows);	
 	
