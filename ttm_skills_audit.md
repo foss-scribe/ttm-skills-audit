@@ -22,6 +22,7 @@ Out of scope items include:
 * Transition Hubs.
 * Database management
 * Member notes
+* new memberships
 
 **Organisations** and **Maroondah City Council** have been identified primarily as stakeholders and will be managed in a separate process to members.
 
@@ -30,6 +31,8 @@ Out of scope items include:
 **Database management** will be achieved through the creation of a TTM portal and created later in additional projects.
 
 Ability to add **notes** to members will be added in a later project.
+
+**New memberships** will be added to a later project. If anyone tries to input data without a valid email (valid format and entry in database) the system will display an error message.
 
 #### Membership database
 
