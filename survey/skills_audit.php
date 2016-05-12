@@ -91,6 +91,10 @@ if (isset($_POST['g-recaptcha-response']))
 			die();
 		} else {
 
+		
+		$member['email'] = $getEmail; //replace me with data from DB
+
+
 		//query db for email
 		//	$db->query('SELECT * from ttm_members WHERE email = :Email');
 		//	$db->bind(':Email', $getEmail);
