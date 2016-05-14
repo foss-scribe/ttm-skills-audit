@@ -1,6 +1,8 @@
 <?php
 
 
+date_default_timezone_set("Australia/Melbourne");
+
 //Load config files
 include('inc/config.dev.php');
 //include('inc/config.test.php');
@@ -40,7 +42,7 @@ if (isset($_POST['g-recaptcha-response']))
 	{
     	//captcha failed so error our and die!
 
-		$message['title'] = "reCAPTCHA failed";
+		$message['title'] = "reCAPTCHA test failed";
 		$message['body'] = "<p>You failed the reCAPTCHA test, please go back and try again</p>";
 
 		require_once('views/header.php');
@@ -51,6 +53,90 @@ if (isset($_POST['g-recaptcha-response']))
     } else {
 		//captcha passed, write to database
 		//TBA
+
+		//write to members table
+
+    	//Create a today data
+    	$date = date('Y-m-d');
+		
+		$db->query('UPDATE ttm_members SET
+			firstname = :Fname,
+			lastname = :Lname,
+			address = :Address,
+			postcode = :Pcode,
+			suburb = :Suburb,
+			email = :Email,
+			phone = :Phone,
+			mobile = :Mobile,
+			consent_contact = :consentContact,
+			consent_sharing = :consentSharing,
+			consent_projects = :consentProjects
+			WHERE id = :memberID');
+
+		$db->bind(':Fname', $_POST['firstname']);
+		$db->bind(':Lname', $_POST['lastname']);
+		$db->bind(':Address', $_POST['address']);
+		$db->bind(':Pcode', $_POST['postcode']);
+		$db->bind(':Suburb', $_POST['suburb']);
+		$db->bind(':Email', $_POST['email']);
+		$db->bind(':Phone', $_POST['phone']);
+		$db->bind(':Mobile', $_POST['mobile']);
+		$db->bind(':consentContact', $_POST['consent_contact_by_ttm']);
+		$db->bind(':consentSharing', $_POST['participation_share_skills']);
+		$db->bind(':consentProjects', $_POST['participation_projects']);
+		$db->bind(':memberID', $_POST['member_id']);
+		$db->execute();
+
+
+
+		//write to ttm_members_stories
+		if (isset($_POST['story'])) {
+			$db->query('INSERT INTO ttm_member_stories (member, story, date_created) VALUES (:Member, :Story, :Date_Created)');
+			$db->bind(':Member', $_POST['member_id']);
+			$db->bind(':Story', $_POST['story']);
+			$db->bind('Date_Created', $date);
+			$db->execute();
+		}
+		
+
+		//write to ttm_member_interests
+		
+		//first pull all interest to loop through
+		$db->query('SELECT id FROM ttm_interests');
+		$interests = $db->resultset();
+		//loop through each interest
+		foreach ($interests as $interest) {
+			//test is the variable was posted
+			if (isset($_POST['interest_' . $interest['id'] ]))
+			{
+				$db->query('INSERT INTO ttm_member_interests (member, interest) VALUES (:Member, :Interest) ');
+				$db->bind(':Member', $_POST['member_id']);
+				$db->bind(':Interest', $_POST['interest_' . $interest['id'] ]);
+				$db->execute();	
+
+			}
+			
+		}
+
+
+		//write to ttm_member_skills
+		//first pull all interest to loop through
+		$db->query('SELECT id FROM ttm_skills');
+		$skills = $db->resultset();
+		//loop through each interest
+		foreach ($skills as $skill) {
+			//test is the variable was posted
+			if (isset($_POST['skill_' . $skill['id'] ]))
+			{
+				$db->query('INSERT INTO ttm_member_skills (member, skill) VALUES (:Member, :Skill) ');
+				$db->bind(':Member', $_POST['member_id']);
+				$db->bind(':Skill', $_POST['skill_' . $skill['id'] ]);
+				$db->execute();	
+
+			}
+			
+		}
+
 
 		//if write to DB succeeds, then display success message
 		require_once('views/header.php');
@@ -119,7 +205,7 @@ if (isset($_POST['g-recaptcha-response']))
 				$db->query('SELECT id, skill, description FROM ttm_skills');
 				$skills = $db->resultset();
 
-				//query to generate skills
+				//query to generate interests 
 				$db->query('SELECT id, interest, description FROM ttm_interests');
 				$interests = $db->resultset();
 

@@ -7,7 +7,7 @@
 <pre>
 NOTE: Included for developement purposes only, the following is a representation of the data submited.
 
-<php print_r($_POST); ?>
+<?php print_r($_POST); ?>
 </pre>
 
 <?php endif; ?>
