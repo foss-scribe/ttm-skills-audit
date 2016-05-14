@@ -26,17 +26,31 @@
 		<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value='<?php echo $member['email'] ?>'></input>
 	</div>
 
-	<label for="phone" class="col-sm-2 control-label">Phone Number</label>
+</div>
+
+<div class="form-group">
+	<label for="phone" class="col-sm-2 control-label">Landline</label>
 	<div class="col-sm-4">
-		<input name="phone" type="phone" class="form-control"  value='<?php echo $member['phone'] ?>'></input>
+		<input name="phone" type="phone" class="form-control" placeholder="(03) 0000 0000"  value='<?php echo $member['phone'] ?>'></input>
+	</div>
+
+	<label for="mobile" class="col-sm-2 control-label">Mobile</label>
+	<div class="col-sm-4">
+		<input name="mobile" type="mobile" class="form-control" placeholder="0000 000 000"  value='<?php echo $member['mobile'] ?>'></input>
 	</div>
 </div>
 
 
+
 <div class="form-group">
 	<label for="address" class="col-sm-2 control-label">Street Address</label>
-	<div class="col-sm-10">
+	<div class="col-sm-4">
 		<input name="address" type="text" class="form-control" value='<?php echo $member['address'] ?>'></input>
+	</div>
+
+	<label for="name" class="col-sm-2 control-label">Suburb</label>
+	<div class="col-sm-4">
+		<input name="suburb" type="text" class="form-control" value='<?php echo $member['suburb'] ?>'></input>
 	</div>
 </div>
 
@@ -45,10 +59,7 @@
 	<div class="col-sm-4">
 		<input name="postcode" type="text" class="form-control" value='<?php echo $member['postcode'] ?>'></input>
 	</div>
-	<label for="name" class="col-sm-2 control-label">Suburb</label>
-	<div class="col-sm-4">
-		<input name="suburb" type="text" class="form-control" value='<?php echo $member['suburb'] ?>'></input>
-	</div>
+	
 </div>
 
 
@@ -117,6 +128,7 @@
 	<div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>	
   <hr>
 <!-- <button type="clear" name="clear" class="btn btn-default">Clear</button> -->
+<input type="hidden" name="member_id" value="<?php echo $member['id']; ?>">
 <button type="submit" name="submit" class="btn btn-primary" value="true">Submit</button>
 
 </form>

@@ -92,34 +92,57 @@ if (isset($_POST['g-recaptcha-response']))
 		} else {
 
 		
-		$member['email'] = $getEmail; //replace me with data from DB
+		//$member['email'] = $getEmail; //replace me with data from DB
 
 
 		//query db for email
-		//	$db->query('SELECT * from ttm_members WHERE email = :Email');
-		//	$db->bind(':Email', $getEmail);
-		//	$member = $db->single();
+			$db->query('SELECT * from ttm_members WHERE email = :Email');
+			$db->bind(':Email', $getEmail);
+			$member = $db->single();
+			
 
-		// if the email doesn't exist in the DB die!
+			if ($db->rowCount() == 0 ){
 
+				// if the email doesn't exist in the DB die!
 
-		//query to generate skills
-			$db->query('SELECT id, skill, description FROM ttm_skills');
-			$skills = $db->resultset();
+				$message['title'] = "Not a registered user";
+				$message['body'] = file_get_contents('views/sorry.php');
 
-		//query to generate skills
-			$db->query('SELECT id, interest, description FROM ttm_interests');
-			$interests = $db->resultset();
+				require_once('views/header.php');
+				require_once('views/error.php');
+				require_once('views/footer.php');
+				die();
 
-		//print_r($rows);	
+			} else{
+
+				//query to generate skills
+				$db->query('SELECT id, skill, description FROM ttm_skills');
+				$skills = $db->resultset();
+
+				//query to generate skills
+				$db->query('SELECT id, interest, description FROM ttm_interests');
+				$interests = $db->resultset();
+
+				//print_r($rows);	
 	
-			//Load views
-			//Load HTML header
-			require_once('views/header.php');
-			//load form
-			require_once('views/skills_audit_form.php');
-			//Load HTML footer
-			require_once('views/footer.php');
+				//Load views
+				//Load HTML header
+				require_once('views/header.php');
+				//load form
+				require_once('views/skills_audit_form.php');
+				//Load HTML footer
+				require_once('views/footer.php');
+				
+			}
+
+			
+
+
+
+		
+
+
+		
 		}
 
 
