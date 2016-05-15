@@ -16,7 +16,7 @@ $db = new DB();
 
 
 
-//Test if form has been submitted
+//Test if skill_audit_form has been submitted
 if (isset($_POST['g-recaptcha-response']))
 {
 	//form has been sent
@@ -113,9 +113,7 @@ if (isset($_POST['g-recaptcha-response']))
 				$db->bind(':Member', $_POST['member_id']);
 				$db->bind(':Interest', $_POST['interest_' . $interest['id'] ]);
 				$db->execute();	
-
 			}
-			
 		}
 
 
@@ -132,121 +130,92 @@ if (isset($_POST['g-recaptcha-response']))
 				$db->bind(':Member', $_POST['member_id']);
 				$db->bind(':Skill', $_POST['skill_' . $skill['id'] ]);
 				$db->execute();	
-
 			}
-			
 		}
-
 
 		//if write to DB succeeds, then display success message
 		require_once('views/header.php');
 		require_once('views/message_form_sent.php');
 		require_once('views/footer.php');
-
-		//elseif commit to DB fails, then error out and die!
-		//require_once('views/header.php');
-		//require_once('views/error.php');
-		//require_once('views/footer.php');
 	}
 
 
+} elseif ( isset($_POST['go'])) {
 
-
-
-} else {
-	//form not sent
-
-	//check if email has been passed to URL
-	if (isset($_GET['email']))
-	{
-		$getEmail = $_GET['email'];
+	//login form posted
+	$getEmail = $_POST['email'];
+	$password = $_POST['password'];
 		
-		//echo htmlspecialchars($getEmail);	
+	//validate the email
+	if (!filter_var($getEmail, FILTER_VALIDATE_EMAIL)) {
 
-		//validate the email
-		if (!filter_var($getEmail, FILTER_VALIDATE_EMAIL)) {
-  			//$emailErr = "Invalid email format"; 
-  			//echo $emailErr;
+		$message['title'] = "Invalid email address";
+		$message['body'] = "<p>You have entered an invalid email address. Please go back and try again.</p>";
 
-			$message['title'] = "Invalid email address";
-			$message['body'] = "<p>You have entered an invalid email address. Please go back and try again.</p>";
+		require_once('views/header.php');
+		require_once('views/error.php');
+		require_once('views/footer.php');
+		die();
+	} else {
+
+		//create has of posted password
+		$password = md5($password);
+
+		//query db for email
+		$db->query('SELECT * from ttm_members WHERE email = :Email AND password= :Password');
+		$db->bind(':Email', $getEmail);
+		$db->bind(':Password', $password);
+		$member = $db->single();
+			
+
+		if ($db->rowCount() == 0 ) {
+
+			// if the email doesn't exist in the DB die!
+
+			$message['title'] = "Sorry";
+			$message['body'] = file_get_contents('views/sorry.php');
 
 			require_once('views/header.php');
 			require_once('views/error.php');
 			require_once('views/footer.php');
 			die();
+
 		} else {
 
-		
-		//$member['email'] = $getEmail; //replace me with data from DB
+			//query to generate skills
+			$db->query('SELECT id, skill, description FROM ttm_skills');
+			$skills = $db->resultset();
 
+			//query to generate interests 
+			$db->query('SELECT id, interest, description FROM ttm_interests');
+			$interests = $db->resultset();
 
-		//query db for email
-			$db->query('SELECT * from ttm_members WHERE email = :Email');
-			$db->bind(':Email', $getEmail);
-			$member = $db->single();
-			
-
-			if ($db->rowCount() == 0 ){
-
-				// if the email doesn't exist in the DB die!
-
-				$message['title'] = "Not a registered user";
-				$message['body'] = file_get_contents('views/sorry.php');
-
-				require_once('views/header.php');
-				require_once('views/error.php');
-				require_once('views/footer.php');
-				die();
-
-			} else{
-
-				//query to generate skills
-				$db->query('SELECT id, skill, description FROM ttm_skills');
-				$skills = $db->resultset();
-
-				//query to generate interests 
-				$db->query('SELECT id, interest, description FROM ttm_interests');
-				$interests = $db->resultset();
-
-				//print_r($rows);	
+			//print_r($rows);	
 	
-				//Load views
-				//Load HTML header
-				require_once('views/header.php');
-				//load form
-				require_once('views/skills_audit_form.php');
-				//Load HTML footer
-				require_once('views/footer.php');
+			//Load views
+			//Load HTML header
+			require_once('views/header.php');
+			//load form
+			require_once('views/skills_audit_form.php');
+			//Load HTML footer
+			require_once('views/footer.php');
 				
-			}
-
-			
-
-
-
-		
-
-
-		
 		}
 
-
-	} else {
-		//no email so we kill the process
+	}
 
 
-		$message['title'] = "Not a registered user";
-		$message['body'] = file_get_contents('views/sorry.php');
+} else {
+		//Display the entry point
+
+		$message['title'] = "Welcome to the TTM Skills Audit";
+		$message['body'] = file_get_contents('views/welcome.php');
 
 		require_once('views/header.php');
 		require_once('views/error.php');
 		require_once('views/footer.php');
 		die();
 	}
-
-
-}
 
 
 

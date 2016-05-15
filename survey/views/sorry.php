@@ -1,18 +1,6 @@
-<p>We're sorry, the skills audit is currently open to registered members of TTM only.</p>
-
-<p>We could not find a record of your email address in our database, however there's a possibility the link we sent to your email did not work correctly. If you are a member, please enter your email address below and click <strong>Go</strong> to try again</p>
+<p>We're sorry, we could not find any member details matching your email and password. If you are a member or subscriber to our mailing list you would have received an email with your password. Please check the email then <a a href="/skills_audit.php">go back</a> and ensure you have entered the correct details</p>
 
 
-<form action="./skills_audit.php" method="get">
+ <p>Note that the skills audit is currently open to registered members of TTM only. If you signed up to the TTM using a different email address, please contact us and let us know and we'll update your details and resend your password.</p>
 
-<div class="form-group">
-	<label for="email" class="col-sm-2 control-label">Email Address</label>
-	<div class="col-sm-3">
-		<input name="email" type="email" class="form-control"  placeholder="me@domain.com"></input>
-	</div>
-</div>
-
-<button type="submit" name="go" class="btn btn-primary" value="true">Go</button>
-
-
-</form>
+<p>Thank you</p>
