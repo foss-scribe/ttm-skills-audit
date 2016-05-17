@@ -1,10 +1,20 @@
-# TTM skills Audit
+# TTM web forms
 
-Transition Towns Maroondah (TTM) is planning a skills audit of our current members. Development of the code and project plan is being developed openly on GitHub with a permissive licence so other Transition or environmentally-focussed groups can re-use it in their own communities.
+This repository contains the web forms used by Transition Towns Maroondah (TTM) for interacting with new and existing members.
 
-## Project Plan
+ Development of the code and project plan is being developed openly on GitHub with a permissive licence so other Transition or environmentally-focussed groups can re-use it in their own communities.
 
-See ttm_skills_audit.md for the latest project plan.
+## Forms ##
+
+* New Member
+* TTM Skills Audit
+* Request new password (TBC)
+
+## TTM Skills Audit
+
+Transition Towns Maroondah (TTM) is planning a skills audit of our current members.
+
+See projects-plans/ttm_skills_audit.md for the latest project plan.
 
 ## Re-use
 
