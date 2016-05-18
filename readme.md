@@ -1,8 +1,8 @@
 # TTM web forms
 
-This repository contains the web forms used by Transition Towns Maroondah (TTM) for interacting with new and existing members.
+This repository contains the public web forms used by Transition Towns Maroondah (TTM) for interacting with new and existing members. The project is aimed at migrated from offline paper forms to the web, making the accessible to TTM members 24/7 and improving data entry efficiency.
 
- Development of the code and project plan is being developed openly on GitHub with a permissive licence so other Transition or environmentally-focussed groups can re-use it in their own communities.
+Development of the code and project plan is being developed openly on GitHub under an open-source licence so other Transition or related community groups can re-use it for their own needs. As the project matures, I'll refactor the code for easier reuse (see [Re-use](#Re-use), below).
 
 ## Forms ##
 
@@ -12,7 +12,7 @@ This repository contains the web forms used by Transition Towns Maroondah (TTM) 
 
 ## TTM Skills Audit
 
-Transition Towns Maroondah (TTM) is planning a skills audit of our current members.
+Transition Towns Maroondah (TTM) is planning a skills audit of our current members. This form will enable registered members to login and update their skills and interests.
 
 See projects-plans/ttm_skills_audit.md for the latest project plan.
 
@@ -31,7 +31,9 @@ The form is dynamically generated, pulling a list of skills and interests from t
 
 ## Installation and requirements
 
-Requirements are straight forward and this should run on most shared hosting providers. The target platform is PHP 5.6 or later but older versions (down to 5.4) should work. The target database is MySQL but the PDO class I've included should make it easy to swap out MySQL for a database of your choice. You also require Google reCAPTCHA for your site.
+Requirements are straight forward and this should run on most shared hosting providers. The target platform is PHP 5.6 or later but older versions (down to 5.4) should work. If I move from the current shared hosting provider to a VPS, I'll migrate the code to require PHP 7.
+
+The target database is MySQL but the PDO class I've included should make it easy to swap out MySQL for a database of your choice. You also require Google reCAPTCHA for your site.
 
 Installation
 
