@@ -57,6 +57,7 @@ if (isset($_POST['g-recaptcha-response']) ) {
 			$date = date("Y-m-d H:i:s");
 
 			//create INSERT query
+			// TBC
 			$db->query('INSERT INTO ttm_members (firstname, lastname, address, postcode, suburb, email, phone, mobile, member_joined, password) values (:Firstname, :Lastname, :Address, :Pcode, :Suburb, :Email, :Phone, :Mobile, :TodayDate, :Password)');
 
 			$db->bind(':Firstname', $_POST['firstname']);
@@ -78,9 +79,10 @@ if (isset($_POST['g-recaptcha-response']) ) {
 
 			createNote($newMemberID, $note, $creator, $date);
 
+
 			//email user confirmation and their password
 			$subject = "TTM membership confirmed";
-			$message = "Thank you for joining TTM!\nYour password is $password. You'll need it if you want to participate in our skills audit or update your details.\n\nYours sincerely,\n\nThe TTM Core Group";
+			$message = "Thank you for joining TTM!\nYour password is $password. You'll need it if you want to participate in our skills audit or update your details.\n\nYour sincerly,\n\nThe TTM Core Group";
 			mail($_POST['email'],$subject, $message );
 
 
@@ -103,8 +105,9 @@ if (isset($_POST['g-recaptcha-response']) ) {
 
 		}
 	}
-} else {
-	//form not submitted so display
+} else
+//form not submitted so display
+{
 
 	require_once('views/header.php');
 	require_once('views/new_member_form.php');

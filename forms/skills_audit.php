@@ -21,26 +21,12 @@ if (isset($_POST['g-recaptcha-response']))
 {
 	//form has been sent
 	
-	//test captcha
-	//create local variable of reCAPTCHA response
-	$response_string = $_POST["g-recaptcha-response"];
+	//test captcha and validate 
+	$captchaResponse = testReCaptcha($_POST['g-recaptcha-response']);
 
-	//assign const SECRET_KEY to local variable
-	$secret_key = SECRET_KEY;
-
-	//create a correctly formatted URL for API call
-	$capchaAPICcall = "https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_string";
-
-	//get the response data from google
-	$data = file_get_contents($capchaAPICcall);
-
-	//process the JSON into a PHP array
-	$result = json_decode($data, true);
-	
-	//validate captcha
-	if ($result['success'] != 1)
+	if ($captchaResponse['success'] != 1)
 	{
-    	//captcha failed so error our and die!
+    	//captcha failed so error out and die!
 
 		$message['title'] = "reCAPTCHA test failed";
 		$message['body'] = "<p>You failed the reCAPTCHA test, please go back and try again</p>";
@@ -52,12 +38,11 @@ if (isset($_POST['g-recaptcha-response']))
 
     } else {
 		//captcha passed, write to database
-		//TBA
 
 		//write to members table
 
     	//Create a today data
-    	$date = date('Y-m-d');
+    	$date = date("Y-m-d H:i:s");
 		
 		$db->query('UPDATE ttm_members SET
 			firstname = :Fname,
@@ -68,6 +53,7 @@ if (isset($_POST['g-recaptcha-response']))
 			email = :Email,
 			phone = :Phone,
 			mobile = :Mobile,
+			date_updated = :DateUpdated,
 			consent_contact = :consentContact,
 			consent_sharing = :consentSharing,
 			consent_projects = :consentProjects
@@ -81,6 +67,7 @@ if (isset($_POST['g-recaptcha-response']))
 		$db->bind(':Email', $_POST['email']);
 		$db->bind(':Phone', $_POST['phone']);
 		$db->bind(':Mobile', $_POST['mobile']);
+		$db->bind(':DateUpdated', $date);
 		$db->bind(':consentContact', $_POST['consent_contact_by_ttm']);
 		$db->bind(':consentSharing', $_POST['participation_share_skills']);
 		$db->bind(':consentProjects', $_POST['participation_projects']);
@@ -133,6 +120,11 @@ if (isset($_POST['g-recaptcha-response']))
 			}
 		}
 
+		//write note
+		$note = "Completed skills audit on " . date_format(date_create(), "g:i A, l j F, Y");
+		$creator = "System";
+		writeNote($_POST['member_id', $note], $creator, $date);
+
 		//if write to DB succeeds, then display success message
 		require_once('views/header.php');
 		require_once('views/message_form_sent.php');
@@ -176,7 +168,7 @@ if (isset($_POST['g-recaptcha-response']))
 			$message['body'] = file_get_contents('views/sorry.php');
 
 			require_once('views/header.php');
-			require_once('views/error.php');
+			require_once('views/message.php');
 			require_once('views/footer.php');
 			die();
 
@@ -212,7 +204,7 @@ if (isset($_POST['g-recaptcha-response']))
 		$message['body'] = file_get_contents('views/welcome.php');
 
 		require_once('views/header.php');
-		require_once('views/error.php');
+		require_once('views/message.php');
 		require_once('views/footer.php');
 		die();
 	}

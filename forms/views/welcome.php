@@ -6,6 +6,8 @@
 <p>To continue, please login in below using your registered email and the password we sent to you. Note that all information collected is subject to our Privacy Policy.</p>
 
 
+<h3>Login to TTM Skills Audit</h3>
+
 <form action="./skills_audit.php" method="post">
 
 <div class="form-group">
@@ -23,3 +25,5 @@
 
 
 </form>
+
+<p>Forgot your password? You can <a href="/reset_password.php">reset it here</a>.</p>
