@@ -1,8 +1,8 @@
 # TTM web forms
 
-This repository contains the public web forms used by Transition Towns Maroondah (TTM) for interacting with new and existing members. The project is aimed at migrated from offline paper forms to the web, making the accessible to TTM members 24/7 and improving data entry efficiency.
+This repository contains the public web forms used by Transition Towns Maroondah (TTM) for interacting with new and existing members. The project is aimed at migrating from offline paper forms to the web, making the accessible to TTM members 24/7 and improving data entry efficiency.
 
-Development of the code and project plan is being developed openly on GitHub under an open-source licence so other Transition or related community groups can re-use it for their own needs. As the project matures, I'll refactor the code for easier reuse (see [Re-use](#Re-use), below).
+The code and project plans are being developed openly on GitHub under an open-source licence so other Transition or related community groups can re-use it for their own needs. As the project matures, I'll re-factor the code for easier reuse (see [Re-use](#Re-use), below).
 
 ## Forms ##
 
