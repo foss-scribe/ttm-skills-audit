@@ -1,3 +1,3 @@
-<h1><?php echo $data['heading']; ?></h1>
+<h1><?php echo $message['title']; ?></h1>
 
-<?php echo $data['message']; ?>
+<?php echo $message['body']; ?>

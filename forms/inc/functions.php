@@ -8,12 +8,15 @@ function generatePassword($length = 0) {
 
 }
 
-function resetPassword($email, $date) {
+function resetPassword($email, $date, $db) {
 
 	$newPassword = generatePassword(8);
-	$hashedPassowrd = md5($newPassword);
+	$hashedPassword = md5($newPassword);
 
-	$db->query('UPDATE ttm_members SET date_modified = :DateModified, password = :Password WHERE email = :Email');
+	$db->query('UPDATE ttm_members SET
+		date_modified = :DateModified,
+		password = :Password
+		WHERE email = :Email');
 	$db->bind(':DateModified', $date);
 	$db->bind(':Password', $hashedPassword);
 	$db->bind(':Email', $email);
@@ -21,20 +24,25 @@ function resetPassword($email, $date) {
 
 
 	$subject = "TTM password reset";
-	$message = "Your TTM password has been reset. Your new password is: $password.";
+	$message = "Your TTM password has been reset. Your new password is: $newPassword";
+	
 	mail($_POST['email'],$subject, $message );
+
+	return $db;
 
 }
 
-function createNote($member, $note, $creator, $date){
+function createNote($member, $note, $creator, $date, $db){
 
-	$db->query('INSERT INTO ttm_member_notes (member, note, creator, date_created) value (:MemberID, :Note, :Creator, :Date_Created)');
+	$db->query('INSERT INTO ttm_member_notes (member, note, creator, date_created) values (:MemberID, :Note, :Creator, :Date_Created)');
 
 	$db->bind(':MemberID', $member);
 	$db->bind(':Creator', $creator);
 	$db->bind(':Note',$note);
 	$db->bind(':Date_Created',$date);
 	$db->execute();
+
+	return $db;
 
 }
 

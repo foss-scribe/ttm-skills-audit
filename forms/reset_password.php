@@ -4,11 +4,12 @@ date_default_timezone_set("Australia/Melbourne");
 
 //Load config files
 include('inc/config.dev.php');
-include('inc/functions.php');
+//include('inc/functions.php');
 //include('inc/config.test.php');
 //include('inc/config.prod.php');
 //Load database class
 include('inc/db.class.php');
+include('inc/functions.php');
 
 $db = new DB();
 $date = date("Y-m-d H:i:s");
@@ -19,6 +20,8 @@ if (isset($_POST['g-recaptcha-response']) ){
 
 	//check and verify reCAPTCHA
 	$captchaResponse = testReCaptcha($_POST['g-recaptcha-response']);
+
+	//print_r($captchaResponse);
 
 	if ($captchaResponse['success'] != 1) {
 		//error out and die!		
@@ -34,7 +37,7 @@ if (isset($_POST['g-recaptcha-response']) ){
 		//check email is in the 
 		$db->query('SELECT id from ttm_members WHERE email = :Email');
 		$db->bind(':Email', $_POST['email']);
-		$db->single();
+		$member = $db->single();
 
 		if ($db->rowCount() == 0 ) {
 
@@ -48,15 +51,26 @@ if (isset($_POST['g-recaptcha-response']) ){
 			die();
 
 		} else {
+			//email is correct and in the DB so process request
 
 			//call the resetPassword function
-			resetPassword($_POST['email'], $date);
+			resetPassword($_POST['email'], $date, $db);
 			//create a note for update event
-			$newMemberID = $db->lastInsertID();
+			$newMemberID = $member['id'];
 			$note = "Password reset on " . date_format(date_create(), "g:i A, l j F, Y");
 			$creator = "System";
 
-			createNote($newMemberID, $note, $creator, $date);
+			createNote($newMemberID, $note, $creator, $date, $db);
+
+			//display message and die
+			$message['title'] = "Password reset";
+			$message['body'] = "<p>Your password has been reset and sent to your email address.</p>";
+
+			require_once('views/header.php');
+			require_once('views/message.php');
+			require_once('views/footer.php');
+			die();
+
 		}
 
 

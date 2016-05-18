@@ -5,10 +5,12 @@ date_default_timezone_set("Australia/Melbourne");
 
 //Load config files
 include('inc/config.dev.php');
+include('inc/functions.php');
 //include('inc/config.test.php');
 //include('inc/config.prod.php');
 //Load database class
 include('inc/db.class.php');
+
 
 $db = new DB();
 
@@ -53,7 +55,7 @@ if (isset($_POST['g-recaptcha-response']))
 			email = :Email,
 			phone = :Phone,
 			mobile = :Mobile,
-			date_updated = :DateUpdated,
+			date_modified = :DateModified,
 			consent_contact = :consentContact,
 			consent_sharing = :consentSharing,
 			consent_projects = :consentProjects
@@ -67,13 +69,12 @@ if (isset($_POST['g-recaptcha-response']))
 		$db->bind(':Email', $_POST['email']);
 		$db->bind(':Phone', $_POST['phone']);
 		$db->bind(':Mobile', $_POST['mobile']);
-		$db->bind(':DateUpdated', $date);
+		$db->bind(':DateModified', $date);
 		$db->bind(':consentContact', $_POST['consent_contact_by_ttm']);
 		$db->bind(':consentSharing', $_POST['participation_share_skills']);
 		$db->bind(':consentProjects', $_POST['participation_projects']);
 		$db->bind(':memberID', $_POST['member_id']);
 		$db->execute();
-
 
 
 		//write to ttm_members_stories
@@ -123,7 +124,7 @@ if (isset($_POST['g-recaptcha-response']))
 		//write note
 		$note = "Completed skills audit on " . date_format(date_create(), "g:i A, l j F, Y");
 		$creator = "System";
-		writeNote($_POST['member_id', $note], $creator, $date);
+		createNote($_POST['member_id'], $note, $creator, $date, $db);
 
 		//if write to DB succeeds, then display success message
 		require_once('views/header.php');
@@ -201,13 +202,13 @@ if (isset($_POST['g-recaptcha-response']))
 		//Display the entry point
 
 		$message['title'] = "Welcome to the TTM Skills Audit";
-		$message['body'] = file_get_contents('views/welcome.php');
+		//$message['body'] = file_get_contents('views/welcome.php');
 
 		require_once('views/header.php');
-		require_once('views/message.php');
+		require_once('views/welcome.php');
 		require_once('views/footer.php');
 		die();
-	}
+}
 
 
 
