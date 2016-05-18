@@ -201,7 +201,7 @@ if (isset($_POST['g-recaptcha-response']))
 } else {
 		//Display the entry point
 
-		$message['title'] = "Welcome to the TTM Skills Audit";
+		//$message['title'] = "Welcome to the TTM Skills Audit";
 		//$message['body'] = file_get_contents('views/welcome.php');
 
 		require_once('views/header.php');

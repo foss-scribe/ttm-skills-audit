@@ -1,4 +1,4 @@
-<h1>Become a member of Transmission Towns Maroondah!</h1>
+<h1>Become a member of Transition Towns Maroondah!</h1>
 
 <p>Transmission Town Maroondah, TTM, is open to anyone who wishes to be part of our community.</p>
 
