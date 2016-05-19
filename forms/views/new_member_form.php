@@ -2,7 +2,7 @@
 
 <p>Transmission Town Maroondah, TTM, is open to anyone who wishes to be part of our community.</p>
 
-<p>Members receive TTM updates, a monthly newsletter (comming soon!) and more!</p>
+<p>Members receive TTM updates, a monthly newsletter (coming soon!) and more!</p>
 
 <form id="memberForm" method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form-horizontal">
 

@@ -20,6 +20,28 @@
 		color: red;
 	}
 
+	.navbar {
+		padding-bottom: 0px;
+		margin-bottom: 0px;
+		min-height: 35px
+	}
+
+	.jumbotron{
+		background-image: url("assets/img/DSC_3687.jpg");
+		background-repeat: no-repeat;
+		background-position: center top;
+
+	}
+
+	.jumbotron div h2, .jumbotron div p{
+		text-align: center;
+		color: white;
+	}
+
+	.jumbotron div h2 {
+		font-size: 32pt;
+	}
+
 
 </style>
 
@@ -35,6 +57,15 @@
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+<?php include('views/navbar.php'); ?>
+
+<div class="jumbotron">
+  <div class="container">
+    <h2>TRANSITION TOWNS MAROONDAH INC.</h2>
+	<p>Creating resilient and sustainable communities</p>
+  </div>
+</div>
 
 <div class="container">
 
