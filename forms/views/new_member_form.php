@@ -61,7 +61,7 @@
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Postcode</label>
 	<div class="col-sm-4">
-		<input name="postcode" type="text" class="form-control" value='' required></input>
+		<input name="postcode" type="text" minlength="4" maxlength="4" class="form-control" value='' required></input>
 	</div>
 	
 </div>
