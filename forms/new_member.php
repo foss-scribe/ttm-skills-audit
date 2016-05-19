@@ -30,9 +30,11 @@ if (isset($_POST['g-recaptcha-response']) ) {
         die();
 	} else {
 
+		$email = strtolower($_POST['email']);
+
 		//check if email address already exists
 		$db->query('SELECT email from ttm_members WHERE email = :Email');
-		$db->bind(':Email', $_POST['email']);
+		$db->bind(':Email', $email);
 		$db->resultSet();
 
 		if ($db->rowCount() > 0) {
@@ -64,7 +66,7 @@ if (isset($_POST['g-recaptcha-response']) ) {
 			$db->bind(':Address', $_POST['address']);
 			$db->bind(':Pcode', $_POST['postcode']);
 			$db->bind(':Suburb', $_POST['suburb']);
-			$db->bind(':Email', $_POST['email']);
+			$db->bind(':Email', $email);
 			$db->bind(':Phone', $_POST['phone']);
 			$db->bind(':Mobile', $_POST['mobile']);
 			$db->bind(':TodayDate', $date);

@@ -9,12 +9,12 @@
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">First Name</label>
 	<div class="col-sm-4">
-		<input name="firstname" type="text" class="form-control" value='<?php echo $member['firstname'] ?>'></input>
+		<input name="firstname" type="text" class="form-control" value='<?php echo $member['firstname'] ?>' required></input>
 	</div>
 
 	<label for="name" class="col-sm-2 control-label">Last Name</label>
 		<div class="col-sm-4">
-			<input name="lastname" type="text" class="form-control" value='<?php echo $member['lastname'] ?>'></input>
+			<input name="lastname" type="text" class="form-control" value='<?php echo $member['lastname'] ?>' required></input>
 		</div>
 </div>
 
@@ -23,7 +23,7 @@
 <div class="form-group">
 	<label for="email" class="col-sm-2 control-label">Email Address</label>
 	<div class="col-sm-4">
-		<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value='<?php echo $member['email'] ?>'></input>
+		<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value='<?php echo $member['email'] ?>' required></input>
 	</div>
 
 </div>
@@ -45,19 +45,19 @@
 <div class="form-group">
 	<label for="address" class="col-sm-2 control-label">Street Address</label>
 	<div class="col-sm-4">
-		<input name="address" type="text" class="form-control" value='<?php echo $member['address'] ?>'></input>
+		<input name="address" type="text" class="form-control" value='<?php echo $member['address'] ?>' required></input>
 	</div>
 
 	<label for="name" class="col-sm-2 control-label">Suburb</label>
 	<div class="col-sm-4">
-		<input name="suburb" type="text" class="form-control" value='<?php echo $member['suburb'] ?>'></input>
+		<input name="suburb" type="text" class="form-control" value='<?php echo $member['suburb'] ?>' required></input>
 	</div>
 </div>
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Postcode</label>
 	<div class="col-sm-4">
-		<input name="postcode" type="text" class="form-control" value='<?php echo $member['postcode'] ?>'></input>
+		<input name="postcode" type="text" class="form-control" value='<?php echo $member['postcode'] ?>' required></input>
 	</div>
 	
 </div>

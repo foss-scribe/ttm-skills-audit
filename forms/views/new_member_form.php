@@ -4,7 +4,7 @@
 
 <p>Members receive TTM updates, a monthly newsletter (comming soon!) and more!</p>
 
-<form method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form-horizontal">
+<form id="memberForm" method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form-horizontal">
 
 <h3>Your Details</h3>
 
@@ -13,12 +13,12 @@
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">First Name</label>
 	<div class="col-sm-4">
-		<input name="firstname" type="text" class="form-control" value=''></input>
+		<input name="firstname" type="text" class="form-control" value='' required></input>
 	</div>
 
 	<label for="name" class="col-sm-2 control-label">Last Name</label>
 		<div class="col-sm-4">
-			<input name="lastname" type="text" class="form-control" value=''></input>
+			<input name="lastname" type="text" class="form-control" value='' required></input>
 		</div>
 </div>
 
@@ -27,7 +27,7 @@
 <div class="form-group">
 	<label for="email" class="col-sm-2 control-label">Email Address</label>
 	<div class="col-sm-4">
-		<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value=''></input>
+		<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value='' required></input>
 	</div>
 
 </div>
@@ -49,19 +49,19 @@
 <div class="form-group">
 	<label for="address" class="col-sm-2 control-label">Street Address</label>
 	<div class="col-sm-4">
-		<input name="address" type="text" class="form-control" value=''></input>
+		<input name="address" type="text" class="form-control" value='' required></input>
 	</div>
 
 	<label for="name" class="col-sm-2 control-label">Suburb</label>
 	<div class="col-sm-4">
-		<input name="suburb" type="text" class="form-control" value=''></input>
+		<input name="suburb" type="text" class="form-control" value='' required></input>
 	</div>
 </div>
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Postcode</label>
 	<div class="col-sm-4">
-		<input name="postcode" type="text" class="form-control" value=''></input>
+		<input name="postcode" type="text" class="form-control" value='' required></input>
 	</div>
 	
 </div>
@@ -72,3 +72,7 @@
 <button type="submit" name="submit" class="btn btn-primary" value="true">Submit</button>
 
 </form>
+
+<script>
+	$("#memberForm").validate();
+</script>
