@@ -25,8 +25,9 @@ function resetPassword($email, $date, $db) {
 
 	$subject = "TTM password reset";
 	$message = "Your TTM password has been reset. Your new password is: $newPassword";
+	$headers = "From: ttmaroonda@gmail.com";
 	
-	mail($_POST['email'],$subject, $message );
+	mail($_POST['email'],$subject, $message, $headers );
 
 	return $db;
 
