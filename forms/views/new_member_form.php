@@ -52,18 +52,32 @@
 		<input name="address" type="text" class="form-control" value='' required></input>
 	</div>
 
-	<label for="name" class="col-sm-2 control-label">Suburb</label>
+	<label for="suburb" class="col-sm-2 control-label">Suburb</label>
 	<div class="col-sm-4">
 		<input name="suburb" type="text" class="form-control" value='' required></input>
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="name" class="col-sm-2 control-label">Postcode</label>
+	<label for="pcode" class="col-sm-2 control-label">Postcode</label>
 	<div class="col-sm-4">
 		<input name="postcode" type="text" minlength="4" maxlength="4" class="form-control" value='' required></input>
 	</div>
 	
+</div>
+
+<div class="form-group">
+	<label for="how" class="col-sm-2 control-label">How did you learn about TTM</label>
+	<div class="col-sm-4">
+		<select name="where_learnt_about_ttm" class="form-control" required>
+			<option>TTM Event</option>
+			<option>TTM Website</option>
+			<option>TTM Facebook Page</option>
+			<option>Web search</option>
+			<option>Word-of-mouth</option>
+			<option>Other...</option>
+		</select>
+	</div>
 </div>
 
 <hr>
