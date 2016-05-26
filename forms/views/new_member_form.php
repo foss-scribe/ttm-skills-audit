@@ -81,14 +81,14 @@
 	</div>
 
 	<fieldset id="ttmEvent">
-		<label for="ttm_event" class="col-sm-2 control-label">TTM Event:</label>
-		<div class="col-sm-4">
+		<label for="ttm_event" class="col-sm-4 control-label">TTM Event:</label>
+		<div class="col-sm-8">
 			<input  type="text" name="ttm_event" class="form-control"></input>
 		</div>
 	</fieldset>
 	<fieldset id="ttmOther">
-		<label for="ttm_event" class="col-sm-2 control-label">Other:</label>
-		<div class="col-sm-4">
+		<label for="ttm_event" class="col-sm-4 control-label">Other:</label>
+		<div class="col-sm-8">
 			<input  type="text" name="ttm_other" class="form-control"></input>
 		</div>
 	</fieldset>

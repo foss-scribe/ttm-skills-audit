@@ -95,7 +95,7 @@ if (isset($_POST['g-recaptcha-response']) ) {
 				createNote($newMemberID, $note, $creator, $date, $db);
 			}
 
-			if (isset($_POST['interest_energy_aduit']))
+			if (isset($_POST['interest_energy_audit']))
 			{
 				$note = "Expressed interest in Energy Audit";
 				createNote($newMemberID, $note, $creator, $date, $db);
@@ -110,7 +110,7 @@ if (isset($_POST['g-recaptcha-response']) ) {
 			if (isset($_POST['interest_food_swap'])) {
 				$text .= "Since you expressed interested in a Food Swap, please visit https://permacultureswap.wordpress.com/ for more information about the Outer Eastern Permaculture Swap (formerly Croydon Food Swap)\n\n";
 			}
-			$text .= "Yours sincerely,\n\nThe TTM Core Group";
+			$text .= "On behalf of, The TTM Core Group\n\n";
 			mail($_POST['email'],$subject, $text, $headers );
 
 
