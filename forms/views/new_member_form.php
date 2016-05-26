@@ -13,12 +13,12 @@
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">First Name</label>
 	<div class="col-sm-4">
-		<input name="firstname" type="text" class="form-control" value='' required></input>
+		<input name="firstname" type="text" class="form-control" value='' ></input>
 	</div>
 
 	<label for="name" class="col-sm-2 control-label">Last Name</label>
 		<div class="col-sm-4">
-			<input name="lastname" type="text" class="form-control" value='' required></input>
+			<input name="lastname" type="text" class="form-control" value='' ></input>
 		</div>
 </div>
 
@@ -27,7 +27,7 @@
 <div class="form-group">
 	<label for="email" class="col-sm-2 control-label">Email Address</label>
 	<div class="col-sm-4">
-		<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value='' required></input>
+		<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value='' ></input>
 	</div>
 
 </div>
@@ -49,19 +49,19 @@
 <div class="form-group">
 	<label for="address" class="col-sm-2 control-label">Street Address</label>
 	<div class="col-sm-4">
-		<input name="address" type="text" class="form-control" value='' required></input>
+		<input name="address" type="text" class="form-control" value='' ></input>
 	</div>
 
 	<label for="suburb" class="col-sm-2 control-label">Suburb</label>
 	<div class="col-sm-4">
-		<input name="suburb" type="text" class="form-control" value='' required></input>
+		<input name="suburb" type="text" class="form-control" value='' ></input>
 	</div>
 </div>
 
 <div class="form-group">
 	<label for="pcode" class="col-sm-2 control-label">Postcode</label>
 	<div class="col-sm-4">
-		<input name="postcode" type="text" minlength="4" maxlength="4" class="form-control" value='' required></input>
+		<input name="postcode" type="text" minlength="4" maxlength="4" class="form-control" value='' ></input>
 	</div>
 	
 </div>
@@ -69,7 +69,7 @@
 <div class="form-group">
 	<label for="how" class="col-sm-2 control-label">How did you learn about TTM</label>
 	<div class="col-sm-4">
-		<select id="where_learnt" name="where_learnt_about_ttm" class="form-control" required>
+		<select id="where_learnt" name="where_learnt_about_ttm" class="form-control" >
 			<option value="">Select an option</option>
 			<option value="TTM Event">TTM Event</option>
 			<option value="TTM Website">TTM Website</option>
@@ -87,7 +87,7 @@
 		</div>
 	</fieldset>
 	<fieldset id="ttmOther">
-		<label for="ttm_event" class="col-sm-4 control-label">Other:</label>
+		<label for="ttm_other" class="col-sm-4 control-label">Other:</label>
 		<div class="col-sm-8">
 			<input  type="text" name="ttm_other" class="form-control"></input>
 		</div>
@@ -103,12 +103,22 @@
 	</div>
 	<div class="checkbox">
 		<label>
-			<input type="checkbox" name="intererst_food_swap">Food Swap? 
+			<input type="checkbox" name="interest_food_swap">Food Swap? 
 		</label>
 	</div>
 	<div class="checkbox">
 		<label>
 			<input type="checkbox" name="interest_energy_audit">Energy Audit? 
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="interest_kids_clothes_swap">Children's Clothes Swap? 
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="interest_ground_ground">Ground-to-Ground?
 		</label>
 	</div>
 	
@@ -137,12 +147,33 @@
 		$("#ttmEvent").hide();
 		$("#ttmOther").hide();
 		$("#memberForm").validate({
-			debug:true,
+			//debug:true,
 			rules: {
+
+				firstname: {
+					required: true
+				},
+
+				lastname: {
+					required: true
+				},
+
+				email: {
+					required: true,
+					email: true
+				},
 				
 				mobile: {
 					required: false,
 					mobileAU: true
+				},
+
+				address: {
+					required: true
+				},
+
+				postcode: {
+					required: true
 				},
 
 				ttm_event: {
@@ -172,18 +203,24 @@
 		switch($("#where_learnt").val()){
 
 			case "TTM Event":
+				$("#ttmEvent").prop('disabled', false);
 				$("#ttmEvent").show();
 				$("#ttmOther").hide();
+				$("#ttmOther").prop('disabled', true);
 			break;
 
 			case "Other":
 				$("#ttmEvent").hide();
 				$("#ttmOther").show();
+				$("#ttmEvent").prop('disabled', true);
+				$("#ttmOther").prop('disabled', false);
 			break;
 
 			default: 
 				$("#ttmEvent").hide();
 				$("#ttmOther").hide();
+				$("#ttmOther").prop('disabled', true);
+				$("#ttmEvent").prop('disabled', true);
 		}
 	}
 </script>

@@ -77,29 +77,44 @@ if (isset($_POST['g-recaptcha-response']) ) {
 			//create a note for the user's joining event
 			$newMemberID = $db->lastInsertID();
 			$note = $_POST['firstname'] . " signed up to TTM on " . date_format(date_create(), "g:i A, l j F, Y") . "\n\n";
-			$note .= $_POST['firstname'] . " learnt about TTM from: " . $_POST['where_learnt_about_ttm'];
+			$note .= $_POST['firstname'] . " learnt about TTM from " . $_POST['where_learnt_about_ttm'];
+			if (isset($_POST['ttm_event']))
+			{
+				$note .= " : " . $_POST['ttm_event'] . "\n\n";
+			}
+			if (isset($_POST['ttm_other']))
+			{
+				$note .= " source: " . $_POST['ttm_other'] . "\n\n";
+			}
 			$creator = "System";
 
-			createNote($newMemberID, $note, $creator, $date, $db);
+			//createNote($newMemberID, $note, $creator, $date, $db);
 
 			//check if member is interested in Book Swap and Food Swap
 			if (isset($_POST['interest_book_swap']))
 			{
-				$note = "Expressed interest in Book Swap";
-				createNote($newMemberID, $note, $creator, $date, $db);
+				$note .= "Expressed interest in Book Swap\n\n";
 			}
 
 			if (isset($_POST['interest_food_swap']))
 			{
-				$note = "Expressed interest in Food Swap";
-				createNote($newMemberID, $note, $creator, $date, $db);
+				$note .= "Expressed interest in Food Swap\n\n";
 			}
 
 			if (isset($_POST['interest_energy_audit']))
 			{
-				$note = "Expressed interest in Energy Audit";
-				createNote($newMemberID, $note, $creator, $date, $db);
+				$note .= "Expressed interest in Energy Audit\n\n";
 			}
+
+			if (isset($_POST['interest_kids_clothes_swap'])){
+				$note .= "Expressed interest in Children's Clothes Swap\n\n";
+			}
+
+			if (isset($_POST['interest_ground_ground'])){
+				$note .= "Expressed interest in Ground-to-Ground\n\n";
+			}
+
+			createNote($newMemberID, $note, $creator, $date, $db);
 
 			
 
@@ -122,7 +137,7 @@ if (isset($_POST['g-recaptcha-response']) ) {
 			$message['body'] .= "<p>Please consider taking part in our <a href='/skills_audit.php'>skills audit</a>. This is a TTM initiative designed to provide us with an idea of our members' skills interest from which we develop our projects.</p>";
 			$message['body'] .= "<h3>Spread the word!</h3>";
 			$message['body'] .= "You've joined TTM, now share the word on your preferred social network!</p>";
-			$body['body'] .= "<div><a class='twitter-share-button' href='https://twitter.com/intent/tweet?text=I%20just%20joined%20Transition%20Town%20Maroondah' data-hashtags='sustainability,transitiontown'>Tweet</a></div>";
+			$message['body'] .= "<div><a class='twitter-share-button' href='https://twitter.com/intent/tweet?text=I%20just%20joined%20Transition%20Town%20Maroondah' data-hashtags='sustainability,transitiontown'>Tweet</a></div>";
 			$message['body'] .= "<div class='fb-share-button' data-href='http://ttm.org.au' data-layout='button' data-mobile-iframe='true'></div>";
 		
 		//display views
