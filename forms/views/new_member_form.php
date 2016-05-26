@@ -69,15 +69,49 @@
 <div class="form-group">
 	<label for="how" class="col-sm-2 control-label">How did you learn about TTM</label>
 	<div class="col-sm-4">
-		<select name="where_learnt_about_ttm" class="form-control" required>
-			<option>TTM Event</option>
-			<option>TTM Website</option>
-			<option>TTM Facebook Page</option>
-			<option>Web search</option>
-			<option>Word-of-mouth</option>
-			<option>Other...</option>
+		<select id="where_learnt" name="where_learnt_about_ttm" class="form-control" required>
+			<option value="">Select an option</option>
+			<option value="TTM Event">TTM Event</option>
+			<option value="TTM Website">TTM Website</option>
+			<option value="TTM Facebook Page">TTM Facebook Page</option>
+			<option value="Web search">Web search</option>
+			<option value="Word-of-mouth">Word-of-mouth</option>
+			<option value="Other">Other...</option>
 		</select>
 	</div>
+
+	<fieldset id="ttmEvent">
+		<label for="ttm_event" class="col-sm-2 control-label">TTM Event:</label>
+		<div class="col-sm-4">
+			<input  type="text" name="ttm_event" class="form-control"></input>
+		</div>
+	</fieldset>
+	<fieldset id="ttmOther">
+		<label for="ttm_event" class="col-sm-2 control-label">Other:</label>
+		<div class="col-sm-4">
+			<input  type="text" name="ttm_other" class="form-control"></input>
+		</div>
+	</fieldset>
+</div>
+
+<div class="form-group">
+	<h3>Are you interested participating in a:</h3>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="interest_book_swap">Book Swap?
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="intererst_food_swap">Food Swap? 
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="interest_energy_audit">Energy Audit? 
+		</label>
+	</div>
+	
 </div>
 
 <hr>
@@ -88,5 +122,57 @@
 </form>
 
 <script>
-	$("#memberForm").validate();
+	$(document).ready(function()
+	{
+		//toggleTTMEvent();
+		$("#where_learnt").change(function () {
+			toggleWhereLearnt();
+		});
+		$("#ttmEvent").hide();
+		$("#ttmOther").hide();
+		$("#memberForm").validate({
+			debug:true,
+			rules: {
+				ttm_event: {
+					required: function () {
+						if ($("#where_learnt[value='TTM Event']")) {
+							return true;
+						} else {
+							return false;
+						}
+					}
+				},
+				ttm_other: {
+					required: function () {
+						if ($("#where_learnt[value='Other']")) {
+							return true;
+						} else {
+							return false;
+						}
+					}
+				},
+			},	
+		});	
+	});
+	function toggleWhereLearnt()
+	{
+		
+		switch($("#where_learnt").val()){
+
+			case "TTM Event":
+				$("#ttmEvent").show();
+				$("#ttmOther").hide();
+			break;
+
+			case "Other":
+				$("#ttmEvent").hide();
+				$("#ttmOther").show();
+			break;
+
+			default: 
+				$("#ttmEvent").hide();
+				$("#ttmOther").hide();
+		}
+	}
+
 </script>

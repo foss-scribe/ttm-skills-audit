@@ -18,6 +18,8 @@
 <style type="text/css">
 	.error {
 		color: red;
+		font-weight: lighter;
+		font-style: italic;
 	}
 
 	.navbar {

@@ -76,15 +76,42 @@ if (isset($_POST['g-recaptcha-response']) ) {
 
 			//create a note for the user's joining event
 			$newMemberID = $db->lastInsertID();
-			$note = $_POST['firstname'] . " signed up to TTM on " . date_format(date_create(), "g:i A, l j F, Y");
+			$note = $_POST['firstname'] . " signed up to TTM on " . date_format(date_create(), "g:i A, l j F, Y") . "\n\n";
+			$note .= $_POST['firstname'] . " learnt about TTM from: " . $_POST['where_learnt_about_ttm'];
 			$creator = "System";
 
 			createNote($newMemberID, $note, $creator, $date, $db);
 
+			//check if member is interested in Book Swap and Food Swap
+			if (isset($_POST['interest_book_swap']))
+			{
+				$note = "Expressed interest in Book Swap";
+				createNote($newMemberID, $note, $creator, $date, $db);
+			}
+
+			if (isset($_POST['interest_food_swap']))
+			{
+				$note = "Expressed interest in Food Swap";
+				createNote($newMemberID, $note, $creator, $date, $db);
+			}
+
+			if (isset($_POST['interest_energy_aduit']))
+			{
+				$note = "Expressed interest in Energy Audit";
+				createNote($newMemberID, $note, $creator, $date, $db);
+			}
+
+			
+
 			//email user confirmation and their password
+			$headers = "From: ttmaroondah@gmail.com";
 			$subject = "TTM membership confirmed";
-			$text = "Thank you for joining TTM!\nYour password is $password. You'll need it if you want to participate in our skills audit or update your details.\n\nYours sincerely,\n\nThe TTM Core Group";
-			mail($_POST['email'],$subject, $text );
+			$text = "Thank you for joining TTM!\nYour password is $password. You'll need it if you want to participate in our skills audit or update your details.\n\n";
+			if (isset($_POST['interest_food_swap'])) {
+				$text .= "Since you expressed interested in a Food Swap, please visit https://permacultureswap.wordpress.com/ for more information about the Outer Eastern Permaculture Swap (formerly Croydon Food Swap)\n\n";
+			}
+			$text .= "Yours sincerely,\n\nThe TTM Core Group";
+			mail($_POST['email'],$subject, $text, $headers );
 
 
 
