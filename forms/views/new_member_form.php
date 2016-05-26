@@ -1,8 +1,8 @@
 <h1>Become a member of Transition Towns Maroondah!</h1>
 
-<p>Transmission Town Maroondah, TTM, is open to anyone who wishes to be part of our community.</p>
+<p>Transmission Town Maroondah (TTM) membership is open to anyone who wishes to be part of our community.</p>
 
-<p>Members receive TTM updates, a monthly newsletter (coming soon!) and more!</p>
+<p>Members receive TTM updates about events, a monthly newsletter (coming soon!) and more!</p>
 
 <form id="memberForm" method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form-horizontal">
 
@@ -124,6 +124,12 @@
 <script>
 	$(document).ready(function()
 	{
+		$.validator.addMethod( "mobileAU", function( phone_number, element ) {
+			phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
+				return this.optional( element ) || phone_number.length > 8 &&
+						phone_number.match( /^(?:\(0[0-8]\)|0[0-8])[ ]?[0-9]{4}[ ]?[0-9]{4}$/ );
+					}, "Please enter a valid mobile phone number" );
+
 		//toggleTTMEvent();
 		$("#where_learnt").change(function () {
 			toggleWhereLearnt();
@@ -133,6 +139,12 @@
 		$("#memberForm").validate({
 			debug:true,
 			rules: {
+				
+				mobile: {
+					required: false,
+					mobileAU: true
+				},
+
 				ttm_event: {
 					required: function () {
 						if ($("#where_learnt[value='TTM Event']")) {
@@ -174,5 +186,4 @@
 				$("#ttmOther").hide();
 		}
 	}
-
 </script>
