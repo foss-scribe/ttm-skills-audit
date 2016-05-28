@@ -1,10 +1,10 @@
 <h1>Become a member of Transition Towns Maroondah!</h1>
 
-<p>Transmission Town Maroondah (TTM) membership is open to anyone who wishes to be part of our community.</p>
+<p>Transmission Towns Maroondah (TTM) membership is open to anyone who wishes to be part of our community. Please join us and help make Maroondah a more resilient and sustainable community in face of the growing challenges caused by Climate Change, Peak Oil, rising energy prices and Globalisation.</p>
 
 <p>Members receive TTM updates about events, a monthly newsletter (coming soon!) and more!</p>
 
-<form id="memberForm" method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form-horizontal">
+<form id="memberForm" method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>">
 
 <h3>Your Details</h3>
 
@@ -12,89 +12,79 @@
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">First Name</label>
-	<div class="col-sm-4">
-		<input name="firstname" type="text" class="form-control" value='' ></input>
-	</div>
+	<input name="firstname" type="text" class="form-control" placeholder="Enter your first name" value='' ></input>
+</div>
 
+<div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Last Name</label>
-		<div class="col-sm-4">
-			<input name="lastname" type="text" class="form-control" value='' ></input>
-		</div>
+	<input name="lastname" type="text" class="form-control" placeholder="Enter your last name" value='' ></input>
 </div>
 
 
 
 <div class="form-group">
 	<label for="email" class="col-sm-2 control-label">Email Address</label>
-	<div class="col-sm-4">
-		<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value='' ></input>
-	</div>
-
+	<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value='' ></input>
 </div>
 
 <div class="form-group">
 	<label for="phone" class="col-sm-2 control-label">Landline</label>
-	<div class="col-sm-4">
-		<input name="phone" type="phone" class="form-control" placeholder="(03) 0000 0000"  value=''></input>
-	</div>
-
-	<label for="mobile" class="col-sm-2 control-label">Mobile</label>
-	<div class="col-sm-4">
-		<input name="mobile" type="mobile" class="form-control" placeholder="0000 000 000"  value=''></input>
-	</div>
+	<input name="phone" type="phone" class="form-control" placeholder="03 0000 0000"  value=''></input>
 </div>
 
+<div class="form-group">
+	<label for="mobile" class="col-sm-2 control-label">Mobile</label>
+		<input name="mobile" type="mobile" class="form-control" placeholder="0000 000 000"  value=''></input>
+
+</div>
 
 
 <div class="form-group">
 	<label for="address" class="col-sm-2 control-label">Street Address</label>
-	<div class="col-sm-4">
-		<input name="address" type="text" class="form-control" value='' ></input>
-	</div>
+	<input name="address" type="text" class="form-control" placeholder="1 Some Street" value='' ></input>
+</div>
 
-	<label for="suburb" class="col-sm-2 control-label">Suburb</label>
-	<div class="col-sm-4">
-		<input name="suburb" type="text" class="form-control" value='' ></input>
-	</div>
+<div class="form-group">
+	<label for="suburb" class="col-sm-2 control-label">Suburb/Town</label>
+	<input name="suburb" type="text" class="form-control" placeholder="Please enter your Town/Suburb" value='' ></input>
 </div>
 
 <div class="form-group">
 	<label for="pcode" class="col-sm-2 control-label">Postcode</label>
-	<div class="col-sm-4">
-		<input name="postcode" type="text" minlength="4" maxlength="4" class="form-control" value='' ></input>
-	</div>
-	
+	<input name="postcode" type="text" minlength="4" maxlength="4" placeholder="31xx" class="form-control" value='' ></input>
 </div>
+	
 
 <div class="form-group">
-	<label for="how" class="col-sm-2 control-label">How did you learn about TTM</label>
-	<div class="col-sm-4">
-		<select id="where_learnt" name="where_learnt_about_ttm" class="form-control" >
-			<option value="">Select an option</option>
-			<option value="TTM Event">TTM Event</option>
-			<option value="TTM Website">TTM Website</option>
-			<option value="TTM Facebook Page">TTM Facebook Page</option>
-			<option value="Web search">Web search</option>
-			<option value="Word-of-mouth">Word-of-mouth</option>
-			<option value="Other">Other...</option>
-		</select>
-	</div>
+	<label for="how" class="control-label">How did you learn about TTM</label>
+	<select id="where_learnt" name="where_learnt_about_ttm" class="form-control" >
+		<option value="">Select an option</option>
+		<option value="TTM Event">TTM Event</option>
+		<option value="TTM Website">TTM Website</option>
+		<option value="TTM Facebook Page">TTM Facebook Page</option>
+		<option value="Web search">Web search</option>
+		<option value="Word-of-mouth">Word-of-mouth</option>
+		<option value="Other">Other...</option>
+	</select>
+</div>
+
+
 
 	<fieldset id="ttmEvent">
-		<label for="ttm_event" class="col-sm-4 control-label">TTM Event:</label>
-		<div class="col-sm-8">
-			<input  type="text" name="ttm_event" class="form-control"></input>
-		</div>
+	<div class="form-group">
+		<label for="ttm_event" class="control-label">Please enter the TTM event</label>
+		<input  type="text" name="ttm_event" class="form-control"></input>
+	</div>
 	</fieldset>
+
 	<fieldset id="ttmOther">
-		<label for="ttm_other" class="col-sm-4 control-label">Other:</label>
-		<div class="col-sm-8">
+		<div class="form-group">
+			<label for="ttm_other" class="control-label">Please describe:</label>
 			<input  type="text" name="ttm_other" class="form-control"></input>
 		</div>
 	</fieldset>
-</div>
 
-<div class="form-group">
+
 	<h3>Are you interested participating in a:</h3>
 	<div class="checkbox">
 		<label>
@@ -122,7 +112,6 @@
 		</label>
 	</div>
 	
-</div>
 
 <hr>
 <div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>

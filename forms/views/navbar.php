@@ -23,11 +23,11 @@
         <li><a href="http://ttm.org.au/gallery/">Gallery</a></li>
         <li><a href="http://ttm.org.au/news/">News</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Forms <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TTM Members <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/new_member.php">Join TTM</a></li>
-            <li><a href="/skills_audit.php">Skills Audit</a></li>
-            <li><a href="/reset_password.php">Reset your password</a></li>
+            <li><a href="new_member.php">Join TTM</a></li>
+            <li><a href="skills_audit.php">Skills Audit</a></li>
+            <li><a href="reset_password.php">Reset your password</a></li>
           </ul>
         </li>
         <li><a href="http://ttm.org.au/contact-us/">Contact Us</a></li>
