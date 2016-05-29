@@ -26,6 +26,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TTM Members <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="new_member.php">Join TTM</a></li>
+            <li><a href="update_details.php">Update your details</a></li>
             <li><a href="skills_audit.php">Skills Audit</a></li>
             <li><a href="reset_password.php">Reset your password</a></li>
           </ul>

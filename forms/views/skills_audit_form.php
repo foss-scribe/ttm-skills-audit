@@ -1,72 +1,12 @@
 <h1>TTM Skills Audit</h1>
 
+<p>Welcome to the TTM skills and interests audit. This initiative is designed to give Transition Towns Maroondah (TTM) insight into the interests that matter to you and the skills that you have to share with the community.</p>
+
+<p>Note that by completeing and submitting this skills audit, you give consent to be contacted by TTM about projects and initiatives related to your nominated skills and interests.</p>
+
+<p>All information we collect is subject to our privacy policy and relevant Australian Laws and is intended for TTM purposes only. We will not share your information with third-parties unless with your expressed consent.</p>
+
 <form method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form-horizontal">
-
-<h3>Your Details</h3>
-
-
-
-<div class="form-group">
-	<label for="name" class="col-sm-2 control-label">First Name</label>
-	<div class="col-sm-4">
-		<input name="firstname" type="text" class="form-control" value='<?php echo $member['firstname'] ?>' required></input>
-	</div>
-
-	<label for="name" class="col-sm-2 control-label">Last Name</label>
-		<div class="col-sm-4">
-			<input name="lastname" type="text" class="form-control" value='<?php echo $member['lastname'] ?>' required></input>
-		</div>
-</div>
-
-
-
-<div class="form-group">
-	<label for="email" class="col-sm-2 control-label">Email Address</label>
-	<div class="col-sm-4">
-		<input name="email" type="email" class="form-control"  placeholder="me@domain.com" value='<?php echo $member['email'] ?>' required></input>
-	</div>
-
-</div>
-
-<div class="form-group">
-	<label for="phone" class="col-sm-2 control-label">Landline</label>
-	<div class="col-sm-4">
-		<input name="phone" type="phone" class="form-control" placeholder="(03) 0000 0000"  value='<?php echo $member['phone'] ?>'></input>
-	</div>
-
-	<label for="mobile" class="col-sm-2 control-label">Mobile</label>
-	<div class="col-sm-4">
-		<input name="mobile" type="mobile" class="form-control" placeholder="0000 000 000"  value='<?php echo $member['mobile'] ?>'></input>
-	</div>
-</div>
-
-
-
-<div class="form-group">
-	<label for="address" class="col-sm-2 control-label">Street Address</label>
-	<div class="col-sm-4">
-		<input name="address" type="text" class="form-control" value='<?php echo $member['address'] ?>' required></input>
-	</div>
-
-	<label for="name" class="col-sm-2 control-label">Suburb</label>
-	<div class="col-sm-4">
-		<input name="suburb" type="text" class="form-control" value='<?php echo $member['suburb'] ?>' required></input>
-	</div>
-</div>
-
-<div class="form-group">
-	<label for="name" class="col-sm-2 control-label">Postcode</label>
-	<div class="col-sm-4">
-		<input name="postcode" type="text" class="form-control" value='<?php echo $member['postcode'] ?>' required></input>
-	</div>
-	
-</div>
-
-
-<div class="form-group">
-	
-</div>
-
 
 
 <div class="row">
@@ -99,30 +39,6 @@
 
 <textarea class="form-control" name="story" rows="6"></textarea>
 
-
-<h3>Consent</h3>
-
-<p>All information we collect is subject to our privacy policy and relevant Australian Laws. We will not share your information with third-parties unless with your expressed consent.</p>
-
-<p>Since the purpose of this skills audit is ultimately to bring people together so we can collaboratively work towards creating a sustainable and resilient community, we ask that you consent to the following:</p>
-
-<div class="checkbox">
-    <label>
-      <input type="checkbox" name="consent_contact_by_ttm" value="true" checked> I consent to be contacted by TTM (core group or other members) about my skills and interests.
-    </label>
-  </div>
-
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="participation_projects" value="true" checked> I am interested in being contacted about joining or creating TTM projects related to my skills and interests.
-    </label>
-  </div>
-
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="participation_share_skills" value="true" checked>I'm interested in being contacted about sharing my skills through participation, workshops and training.
-    </label>
-  </div>
 
   <hr>
 	<div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>	
