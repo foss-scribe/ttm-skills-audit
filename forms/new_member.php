@@ -137,7 +137,7 @@ if (isset($_POST['g-recaptcha-response']) ) {
 			$message['body'] .= "<p>Please consider taking part in our <a href='/skills_audit.php'>skills audit</a>. This is a TTM initiative designed to provide us with an idea of our members' skills interest from which we develop our projects.</p>";
 			$message['body'] .= "<h3>Spread the word!</h3>";
 			$message['body'] .= "You've joined TTM, now share the word on your preferred social network!</p>";
-			$message['body'] .= "<div><a class='twitter-share-button' href='https://twitter.com/intent/tweet?text=I%20just%20joined%20Transition%20Town%20Maroondah' data-hashtags='sustainability,transitiontown'>Tweet</a></div>";
+			$message['body'] .= "<div><a class='twitter-share-button' href='https://twitter.com/intent/tweet?text=I%20just%20joined%20Transition%20Town%20Maroondah%20@TTMaroondah' data-hashtags='sustainability,transitiontown'>Tweet</a></div>";
 			$message['body'] .= "<div class='fb-share-button' data-href='http://ttm.org.au' data-layout='button' data-mobile-iframe='true'></div>";
 		
 		//display views
