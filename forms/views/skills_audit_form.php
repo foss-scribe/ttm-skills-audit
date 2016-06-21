@@ -2,9 +2,12 @@
 
 <p>Welcome to the TTM skills and interests audit. This initiative is designed to give Transition Towns Maroondah (TTM) insight into the interests that matter to you and the skills that you have to share with the community.</p>
 
-<p>Note that by completeing and submitting this skills audit, you give consent to be contacted by TTM about projects and initiatives related to your nominated skills and interests.</p>
+
+<div class="alert alert-info" role="alert">
+<p>Note that by completing and submitting this skills audit, you give consent to be contacted by TTM about projects and initiatives related to your nominated skills and interests.</p>
 
 <p>All information we collect is subject to our privacy policy and relevant Australian Laws and is intended for TTM purposes only. We will not share your information with third-parties unless with your expressed consent.</p>
+</div>
 
 <form method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form-horizontal">
 
@@ -40,9 +43,7 @@
 <textarea class="form-control" name="story" rows="6"></textarea>
 
 
-  <hr>
-	<div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>	
-  <hr>
+
 <!-- <button type="clear" name="clear" class="btn btn-default">Clear</button> -->
 <input type="hidden" name="member_id" value="<?php echo $member['id']; ?>">
 <button type="submit" name="submit" class="btn btn-primary" value="true">Submit</button>

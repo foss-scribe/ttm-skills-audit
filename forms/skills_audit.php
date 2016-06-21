@@ -19,66 +19,25 @@ $db = new DB();
 
 
 //Test if skill_audit_form has been submitted
-if (isset($_POST['g-recaptcha-response']))
+if (isset($_POST['member_id']))
 {
 	//form has been sent
 	
-	//test captcha and validate 
-	$captchaResponse = testReCaptcha($_POST['g-recaptcha-response']);
-
-	if ($captchaResponse['success'] != 1)
-	{
-    	//captcha failed so error out and die!
-
-		$message['title'] = "reCAPTCHA test failed";
-		$message['body'] = "<p>You failed the reCAPTCHA test, please go back and try again</p>";
-
-		require_once('views/header.php');
-		require_once('views/error.php');
-		require_once('views/footer.php');
-        die();
-
-    } else {
-		//captcha passed, write to database
-
-		//write to members table
+	//write to members table
 
     	//Create a today data
     	$date = date("Y-m-d H:i:s");
-		
-		$db->query('UPDATE ttm_members SET
-			firstname = :Fname,
-			lastname = :Lname,
-			address = :Address,
-			postcode = :Pcode,
-			suburb = :Suburb,
-			email = :Email,
-			phone = :Phone,
-			mobile = :Mobile,
-			date_modified = :DateModified,
-			consent_contact = :consentContact,
-			consent_sharing = :consentSharing,
-			consent_projects = :consentProjects
-			WHERE id = :memberID');
 
-		$db->bind(':Fname', $_POST['firstname']);
-		$db->bind(':Lname', $_POST['lastname']);
-		$db->bind(':Address', $_POST['address']);
-		$db->bind(':Pcode', $_POST['postcode']);
-		$db->bind(':Suburb', $_POST['suburb']);
-		$db->bind(':Email', $_POST['email']);
-		$db->bind(':Phone', $_POST['phone']);
-		$db->bind(':Mobile', $_POST['mobile']);
-		$db->bind(':DateModified', $date);
-		$db->bind(':consentContact', $_POST['consent_contact_by_ttm']);
-		$db->bind(':consentSharing', $_POST['participation_share_skills']);
-		$db->bind(':consentProjects', $_POST['participation_projects']);
-		$db->bind(':memberID', $_POST['member_id']);
-		$db->execute();
-
+    	//clear our existing skills audit data
+    	$db->query('DELETE FROM ttm_member_skills WHERE member = :Member');
+    	$db->bind(':Member', $_POST['member_id']);
+    	$db->execute();
+    	$db->query('DELETE FROM ttm_member_interests WHERE member = :Member');
+    	$db->bind(':Member', $_POST['member_id']);
+    	$db->execute();
 
 		//write to ttm_members_stories
-		if (isset($_POST['story'])) {
+		if ($_POST['story'] != "" ) {
 			$db->query('INSERT INTO ttm_member_stories (member, story, date_created) VALUES (:Member, :Story, :Date_Created)');
 			$db->bind(':Member', $_POST['member_id']);
 			$db->bind(':Story', $_POST['story']);
@@ -121,16 +80,32 @@ if (isset($_POST['g-recaptcha-response']))
 			}
 		}
 
-		//write note
-		$note = "Completed skills audit on " . date_format(date_create(), "g:i A, l j F, Y");
-		$creator = "System";
-		createNote($_POST['member_id'], $note, $creator, $date, $db);
+
+		//check if our person has done a skills audit
+		$db->query('SELECT id, note FROM ttm_member_notes WHERE note LIKE :Skills AND member = :Member');
+		$db->bind(':Member', $_POST['member_id']);
+		$db->bind(':Skills', "Completed skills audit%");
+		$memberNote = $db->single();
+
+		if ($db->rowCount() == 0)
+		{
+			//write creation note
+			$note = "Completed skills audit on " . date_format(date_create(), "g:i A, l j F, Y");
+			$creator = "System";
+			createNote($_POST['member_id'], $note, $creator, $date, $db);
+		} else {
+
+			$note = $memberNote['note'] . "\n\n" . "Updated skills audit on " . date_format(date_create(), "g:i A, l j F, Y");
+			updateNote($_POST['member_id'], $note, "System", $date, $db);
+
+		}
+
+		
 
 		//if write to DB succeeds, then display success message
 		require_once('views/header.php');
 		require_once('views/message_form_sent.php');
 		require_once('views/footer.php');
-	}
 
 
 } elseif ( isset($_POST['go'])) {
@@ -175,6 +150,13 @@ if (isset($_POST['g-recaptcha-response']))
 
 		} else {
 
+			$db->query('SELECT note from ttm_member_notes WHERE member = :MemberID AND note LIKE :Skills');
+			$db->bind(':MemberID',$member['id']);
+			$db->bind('Skills', "Completed skills audit");
+			$skillsAudit = $db->single();
+
+			
+
 			//query to generate skills
 			$db->query('SELECT id, skill, description FROM ttm_skills');
 			$skills = $db->resultset();
@@ -188,8 +170,16 @@ if (isset($_POST['g-recaptcha-response']))
 			//Load views
 			//Load HTML header
 			require_once('views/header.php');
+			//load alert
+			if ($db->rowCount() > 0)
+			{
+				$alert = "You've already completed the skills audit! If you attempt to complete the skills audit again your previous entries will be deleted.";
+				$alertType = "alert-danger";
+				require_once('views/alert.php');
+			}
 			//load form
 			require_once('views/skills_audit_form.php');
+
 			//Load HTML footer
 			require_once('views/footer.php');
 				
@@ -205,7 +195,7 @@ if (isset($_POST['g-recaptcha-response']))
 		//$message['body'] = file_get_contents('views/welcome.php');
 
 		require_once('views/header.php');
-		require_once('views/welcome.php');
+		require_once('views/skills_audit_login_form.php');
 		require_once('views/footer.php');
 		die();
 }

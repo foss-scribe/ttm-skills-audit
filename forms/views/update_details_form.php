@@ -5,7 +5,7 @@
 <p>All information we collect is subject to our privacy policy and relevant Australian Laws and is intended for TTM purposes only. We will not share your information with third-parties unless with your expressed consent.</p>
 
 
-<form method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form">
+<form id="memberForm" method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form">
 
 
 <div class="form-group">
@@ -39,17 +39,17 @@
 
 <div class="form-group">
 	<label for="address" class="col-sm-2 control-label">Street Address</label>
-	<input name="address" type="text" class="form-control" value='<?php echo $member['address'] ?>' required></input>
+	<input name="address" type="text" class="form-control" placeholder="1 your street" value='<?php echo $member['address'] ?>'></input>
 </div>
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Suburb</label>
-	<input name="suburb" type="text" class="form-control" value='<?php echo $member['suburb'] ?>' required></input>
+	<input id="suburb" name="suburb" type="text" class="form-control" value='<?php echo $member['suburb'] ?>'></input>
 </div>
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Postcode</label>
-	<input name="postcode" type="text" class="form-control" value='<?php echo $member['postcode'] ?>' required></input>	
+	<input name="postcode" type="text" class="form-control" placeholder="3000" value='<?php echo $member['postcode'] ?>'></input>	
 </div>
 
 <h3>Social</h3>
@@ -88,6 +88,64 @@
 <button type="submit" name="submit" class="btn btn-primary" value="true">Submit</button>
 
 </form>
+
+<script>
+	$(document).ready(function()
+	{
+		$.validator.addMethod( "mobileAU", function( phone_number, element ) {
+			phone_number = phone_number.replace( /\(|\)|\s+|-/g, "" );
+				return this.optional( element ) || phone_number.length > 8 &&
+						phone_number.match( /^(?:\(0[0-8]\)|0[0-8])[ ]?[0-9]{4}[ ]?[0-9]{4}$/ );
+					}, "Please enter a valid mobile phone number" );
+
+			
+			$("#memberForm").validate({
+			rules: {
+
+				firstname: {
+					required: true
+				},
+
+				lastname: {
+					required: true
+				},
+
+				email: {
+					required: true,
+					email: true
+				},
+				
+				mobile: {
+					required: false,
+					mobileAU: true
+				},
+
+				address: {
+					required: true
+				},
+
+				postcode: {
+					required: true
+				},
+
+			},	
+		});
+		});	
+</script>
+<script>
+	var options = {
+	data: ["Bayswater North", "Croydon", "Croydon Hills", "Croydon North", "Croydon South", "Heathmont", "Kilsyth South", "Ringwood", "Ringwood East", "Ringwood North", "Vermont", "Warranwood", "Wonga Park"],
+	list: {
+		maxNumberOfElements: 13,
+		match:
+		{
+			enabled: true
+		}
+	}
+};
+
+$("#suburb").easyAutocomplete(options);
+</script>
 
 <!--
 

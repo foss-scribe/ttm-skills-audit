@@ -33,7 +33,7 @@ function resetPassword($email, $date, $db) {
 
 }
 
-function createNote($member, $note, $creator, $date, $db){
+function createNote($member, $note, $creator, $date, $db) {
 
 	$db->query('INSERT INTO ttm_member_notes (member, note, creator, date_created) values (:MemberID, :Note, :Creator, :Date_Created)');
 
@@ -46,6 +46,23 @@ function createNote($member, $note, $creator, $date, $db){
 	return $db;
 
 }
+
+function updateNote($member, $note, $editor, $dateModified, $db) {
+	$db->query('UPDATE ttm_member_notes SET
+		note = :Note,
+		last_editor = :lastEditor,
+		date_edited = :DateModified
+		WHERE member = :MemberID');
+
+	$db->bind(':Note', $note);
+	$db->bind(':lastEditor', $editor);
+	$db->bind(':DateModified', $dateModified);
+	$db->bind(':MemberID', $member);
+	$db->execute();
+	
+	return $db;
+}
+
 
 function testReCaptcha($recptchaResponse)
 {
