@@ -61,7 +61,7 @@
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Twitter</label>
-	<input name="social_twitter" type="text" class="form-control" value='<?php echo $member['twitter'] ?>'></input>	
+	<input name="social_twitter" type="text" class="form-control" placeholder="@twitterID" value='<?php echo $member['twitter'] ?>'></input>	
 </div>
 
 <div class="form-group">
