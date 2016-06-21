@@ -59,7 +59,8 @@ if (isset($_POST['g-recaptcha-response']))
 			website = :socialWebsite,
 			twitter = :socialTwitter,
 			facebook = :socialFacebook,
-			googleplus = :socialGooglePlus
+			googleplus = :socialGooglePlus,
+			instagram = :socialInstagram
 			WHERE id = :memberID');
 
 		$db->bind(':Fname', $_POST['firstname']);
@@ -74,6 +75,7 @@ if (isset($_POST['g-recaptcha-response']))
 		$db->bind(':socialWebsite', $_POST['social_web']);
 		$db->bind(':socialFacebook', $_POST['social_facebook']);
 		$db->bind(':socialGooglePlus', $_POST['social_googleplus']);
+		$db->bind(':socialInstagram', $_POST['social_instagram']);
 		$db->bind(':socialTwitter', $_POST['social_twitter']);
 		$db->bind(':memberID', $_POST['member_id']);
 		$db->execute();

@@ -56,24 +56,28 @@
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Website or blog</label>
-	<input name="social_web" type="text" class="form-control" value='<?php echo $member['website'] ?>' required></input>	
+	<input name="social_web" type="text" class="form-control" value='<?php echo $member['website'] ?>'></input>	
 </div>
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Twitter</label>
-	<input name="social_twitter" type="text" class="form-control" value='<?php echo $member['twitter'] ?>' required></input>	
+	<input name="social_twitter" type="text" class="form-control" value='<?php echo $member['twitter'] ?>'></input>	
 </div>
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Facebook</label>
-	<input name="social_facebook" type="text" class="form-control" value='<?php echo $member['facebook'] ?>' required></input>	
+	<input name="social_facebook" type="text" class="form-control" value='<?php echo $member['facebook'] ?>'></input>	
 </div>
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Google+</label>
-	<input name="social_googleplus" type="text" class="form-control" value='<?php echo $member['googleplus'] ?>' required></input>	
+	<input name="social_googleplus" type="text" class="form-control" value='<?php echo $member['googleplus'] ?>'></input>	
 </div>
 
+<div class="form-group">
+	<label for="name" class="col-sm-2 control-label">Instagram</label>
+	<input name="social_instagram" type="text" class="form-control" value='<?php echo $member['instagram'] ?>'></input>	
+</div>
 
 
   <hr>
