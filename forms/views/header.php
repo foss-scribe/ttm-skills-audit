@@ -12,6 +12,9 @@
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
 <script src="assets/js/jquery.easy-autocomplete.min.js"></script> 
 
+
+
+
 <link rel="stylesheet" href="assets/css/easy-autocomplete.min.css"> 
 
 

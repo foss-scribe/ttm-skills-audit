@@ -96,9 +96,11 @@ function processSkills($dataType, $db) {
 	$parentResult = $db->resultset();
 
 	foreach ($parentResult as $item) {
-		$db->query('SELECT * from ' . $childTable . 'WHERE ' . $childColumn . ' = ' . $item['id']);
+		$db->query('SELECT * from ' . $childTable . ' WHERE ' . $childColumn . ' = :ChildItem');
+		$db->bind(':ChildItem', $item['id']);
+		$db->execute();
 		$row = array(
-			"skill"=>$item['skill'],
+			"$itemLabel"=>$item[$itemLabel],
 			"description"=>$item['description'],
 			"count"=>$db->rowCount()
 	);

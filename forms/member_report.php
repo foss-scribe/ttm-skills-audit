@@ -13,10 +13,13 @@ include('inc/db.class.php');
 
 $db = new DB();
 
+
 //retrieve member data
 $db->query('SELECT * FROM ttm_members');
+$db->execute();
 $noMembers = $db->rowCount();
 $ttmMembers = $db->resultset();
+
 
 //retrieve and process skills and interests into arrays
 
@@ -96,14 +99,14 @@ foreach ($ttmMembers as $member) {
 
 
 //count members who have completed the skills audit.
-$db->query('SELECT note * FROM ttm_member_notes WHERE note LIKE :searchString');
+$db->query('SELECT note FROM ttm_member_notes WHERE note LIKE :searchString');
 $db->bind(':searchString', "%Completed skills audit%");
 $db->execute();
 $noCompletedSkillsAudit = $db->rowCount();
 
 
 //load views
-	require_once('views/header.php');
+	require_once('views/header_charts.php');
 	require_once('views/member_report_dashboard.php');
 	require_once('views/footer.php');
 	die();
