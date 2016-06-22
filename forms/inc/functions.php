@@ -63,6 +63,51 @@ function updateNote($member, $note, $editor, $dateModified, $db) {
 	return $db;
 }
 
+/**
+*
+* Gets all interests/skills from the database then counts the number of members with that skill/interest
+*
+*
+*/
+function processSkills($dataType, $db) {
+	//instantiate empty array
+	$processedItems = [];
+
+	switch ($dataType) {
+		case 'skills':
+			$parentTable = "ttm_skills";
+			$childTable = "ttm_member_skills";
+			$childColumn = "skill";
+			$itemLabel = "skill";
+			break;
+		case 'interests':
+			$parentTable = "ttm_interests";
+			$childTable = "ttm_member_interests";
+			$childColumn = "interest";
+			$itemLabel = "interest";
+			break;
+		default:
+			# code...
+			break;
+	}
+
+	//build initial query
+	$db->query('SELECT * FROM ' . $parentTable);
+	$parentResult = $db->resultset();
+
+	foreach ($parentResult as $item) {
+		$db->query('SELECT * from ' . $childTable . 'WHERE ' . $childColumn . ' = ' . $item['id']);
+		$row = array(
+			"skill"=>$item['skill'],
+			"description"=>$item['description'],
+			"count"=>$db->rowCount()
+	);
+	array_push($processedItems,$row);
+	}
+
+	//return array
+	return $processedItems;
+}
 
 function testReCaptcha($recptchaResponse)
 {

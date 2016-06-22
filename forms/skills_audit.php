@@ -82,9 +82,10 @@ if (isset($_POST['member_id']))
 
 
 		//check if our person has done a skills audit
+		//test searching with matching http://stackoverflow.com/questions/2526772/search-for-string-within-text-column-in-mysql
 		$db->query('SELECT id, note FROM ttm_member_notes WHERE note LIKE :Skills AND member = :Member');
 		$db->bind(':Member', $_POST['member_id']);
-		$db->bind(':Skills', "Completed skills audit%");
+		$db->bind(':Skills', "Completed skills audit");
 		$memberNote = $db->single();
 
 		if ($db->rowCount() == 0)
