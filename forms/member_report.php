@@ -105,24 +105,26 @@ foreach ($ttmMembers as $member) {
 	$noCompletedSkillsAudit = $db->rowCount();
 
 //get interests by suburb
-	$suburbInterests = [];
-	$noInterestsBySuburb = 0;
-	foreach ($suburbs as $suburb => $value) {
-		$db->query('SELECT id FROM ttm_members WHERE suburb = ' . $suburb);
-		$db->execute();
-		$membersBySuburb = $db->resultset();
-		foreach ($membersBySuburb as $member) {
-			$db->query('SELECT * FROM ttm_member_interests WHERE member = ' . $member['id']);
-			$db->execute();
-			$noInterestsBySuburb = $db->rowCount();
-		}
-		$row = array(
-				$suburb=>$db->rowCount();
-			);
-		array_push($suburbInterests, $row):
-	}
 
-	print_r($suburbInterests);
+$subs = array(
+	"Bayswater North",
+	"Croydon",
+	"Croydon Hills",
+	"Croydon North",
+	"Croydon South",
+	"Heathmont",
+	"Kilsyth South",
+	"Ringwood",
+	"Ringwood East",
+	"Ringwood North",
+	"Vermont",
+	"Warranwood",
+	"Wonga Park",
+	"other",
+	"not specified"
+);
+
+
 
 
 //load views

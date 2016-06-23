@@ -13,9 +13,18 @@
 		<p>No. who completed the skills audit: <?php echo $noCompletedSkillsAudit; ?></p>
 	</div>
 	<div class="col-md-6">
-		<div id="chart_Suburb"></div>
 	</div>
 </div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div id="chart_Suburb"></div>
+	</div>
+	<div class="col-md-6">
+	</div>
+</div>
+
+
 
 <!-- Row with two columns for skills and interests widgets -->
 <div class="row">
@@ -26,10 +35,9 @@
 	<div class="col-md-6">
 		<div id="graph_Skills"></div>
 	</div>
+	
 
 </div>
-
-
 
 
 
