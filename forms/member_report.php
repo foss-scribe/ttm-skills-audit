@@ -99,10 +99,30 @@ foreach ($ttmMembers as $member) {
 
 
 //count members who have completed the skills audit.
-$db->query('SELECT note FROM ttm_member_notes WHERE note LIKE :searchString');
-$db->bind(':searchString', "%Completed skills audit%");
-$db->execute();
-$noCompletedSkillsAudit = $db->rowCount();
+	$db->query('SELECT note FROM ttm_member_notes WHERE note LIKE :searchString');
+	$db->bind(':searchString', "%Completed skills audit%");
+	$db->execute();
+	$noCompletedSkillsAudit = $db->rowCount();
+
+//get interests by suburb
+	$suburbInterests = [];
+	$noInterestsBySuburb = 0;
+	foreach ($suburbs as $suburb => $value) {
+		$db->query('SELECT id FROM ttm_members WHERE suburb = ' . $suburb);
+		$db->execute();
+		$membersBySuburb = $db->resultset();
+		foreach ($membersBySuburb as $member) {
+			$db->query('SELECT * FROM ttm_member_interests WHERE member = ' . $member['id']);
+			$db->execute();
+			$noInterestsBySuburb = $db->rowCount();
+		}
+		$row = array(
+				$suburb=>$db->rowCount();
+			);
+		array_push($suburbInterests, $row):
+	}
+
+	print_r($suburbInterests);
 
 
 //load views
