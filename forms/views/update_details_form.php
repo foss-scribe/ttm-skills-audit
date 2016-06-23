@@ -1,24 +1,48 @@
 <h1>Update your details</h1>
 
-<p>Use this page to view and update the personal details we hold about you in our database.</p>
-
-<p>All information we collect is subject to our privacy policy and relevant Australian Laws and is intended for TTM purposes only. We will not share your information with third-parties unless with your expressed consent.</p>
-
 
 <form id="memberForm" method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form">
 
+<h3>Personal details</h3>
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">First Name</label>
-	<input name="firstname" type="text" class="form-control" value='<?php echo $member['firstname'] ?>' required></input>
+	<input name="firstname" type="text" class="form-control" value='<?php echo $member['firstname'] ?>'>
 </div>
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">Last Name</label>
-	<input name="lastname" type="text" class="form-control" value='<?php echo $member['lastname'] ?>' required></input>
+	<input name="lastname" type="text" class="form-control" value='<?php echo $member['lastname'] ?>'>
+</div>
+
+<div class="form-group">
+	<label for="gender" class="col-sm-2 control-label">Last Name</label>
+	<select>
+		<option>Female</option>
+		<option>Male</option>
+		<option>Trans</option>
+		<option>Prefer not to say</option>
+	</select>
+</div>
+
+<div class="form-group">
+	<label for="dob" class="col-sm-2 control-label">Year you were born</label>
+	<input name="dob" type="text" class="form-control" placeholder="YYYY" value='<?php echo $member['dob'] ?>'>
+</div>
+
+<div class="form-group">
+	<label for="household_income" class="col-sm-2 control-label">Household income</label>
+	<select>
+		<option>Less than 50,000</option>
+		<option>50,001 to 80,000</option>
+		<option>80,001 to 110,000</option>
+		<option>Above 110,000</option>
+		<option>Prefer not to say</option>
+	</select>
 </div>
 
 
+<h3>Contact</h3>
 
 <div class="form-group">
 	<label for="email" class="col-sm-2 control-label">Email Address</label>

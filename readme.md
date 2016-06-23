@@ -7,8 +7,10 @@ The code and project plans are being developed openly on GitHub under an open-so
 ## Forms ##
 
 * New Member
+* Update details
 * TTM Skills Audit
-* Request new password (TBC)
+* Request new password
+
 
 ## TTM Skills Audit
 

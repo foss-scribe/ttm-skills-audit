@@ -28,11 +28,13 @@ Out of scope items include:
 
 **Transition Hubs** are defined as a sub-group of TTM as per correspondence with Michael Down. They will be addressed in a future project.
 
-**Database management** will be achieved through the creation of a TTM portal and created later in additional projects.
+**Database management for users** will be achieved through the creation of a TTM portal and created later in additional projects.
 
-Ability to add **notes** to members will be added in a later project.
+Ability to add **notes** to members will be added as part of the *portal project*.
 
-**New memberships** will be added to a later project. If anyone tries to input data without a valid email (valid format and entry in database) the system will display an error message.
+~~**New memberships** will be added to a later project. If anyone tries to input data without a valid email (valid format and entry in database) the system will display an error message.~~
+
+**New memberships** Individuals can sign up directly using a web form.
 
 #### Membership database
 
@@ -80,16 +82,7 @@ We also need to decide on what personal information to collect and provide 'acti
 The following is an example of how the form will be displayed.
 
 ```
-My details:
 
-Name
-Email address
-Street address
-Postcode
-Suburb
-Phone number
-
-***
 
 My interests:
 
@@ -131,12 +124,6 @@ My Transition Story
 |				|
 +---------------------------+
 
-Consent
-
-[] I consent to be contacted by TTM (core group or other members) about my skills and interests.
-[] I am interested in joining or creating TTM projects related to my skills and interests.
-[] I'm interested in sharing my skills through participation, workshops and training.
-
 [reCAPTCHA]
 
 [Clear] [Submit]
@@ -145,58 +132,7 @@ Consent
 
 ### Description of fields ###
 
-Following is a description of the data we wish to capture.
-
-My details: the user's personal details
-
-My interests:
-
-* Renewable Energy
-    * Including: building retrofitting, home insulation, thermal imaging, solar, energy saving devices and providers, DIY, renewable energies, batteries
-* Food: security, production, transportation:
-    * Including: food security, food production, food miles, home gardens, sharing, localisation, community gardens, composting, permaculture, garden sharing, vegetable growing, cooking, baking, brewing and preserving
-* Transport and Cycling
-    * Including: Public transport, hybrid and electric vehicles, walking, car pooling, footpath, bicycle maintenance, bicycle paths and parking
-* Housing and Planning
-    * Including: Sustainable housing, state and local government regulations for housing, planning, zoning and other community-related construction activities
-
-* The Arts
-    * Including: design, photography, film making, painting and drawing, music and sculpture
-
-* Trees, Parks and Wildlife
-    * Including conservation, park maintenance, tree planting, Australian natives, natural habitats, pest control, wildlife protection
-
-* Waste
-    * Including: waste management, composting, coffee grounds collection, plastic bags/bottles, fruit and vegetable waste from shops, hard waste, industrial waste, electronic waste, capture of rainwater run-off, tank and pump advice, drainage
-
-* Water
-    * Including: domestic capture and storage, tanks and pump advice, drainage, water quality
-
-* Recycling and reuse
-    * Including: council collections, sharing, refurbishment, up-cycling, eWaste
-
-
-Skills I can contribute:
-
-* Communication, marketing and publicity:
-    * Including: writing press releases, case studies, articles, social media, radio
-* Project Management:
-    * Including: developing and managing projects, people, quality, IT related skills, PMBOK
-* Administration and Clerical:
-    * Including: Data entry, taking notes/minutes, accounting, facilitating workshops and meetings
-* Grant writing:
-    * Including: experience researching, seeking, writing and editing proposals, tenders and grants
-* Graphic design:
-    * Including: print production, web and email newsletter design (CSS), photo editing, template design, digital illustration
-* Events management:
-    * Including: promoting, organising and managing community or business events and activities
-* Website and database development:
-    * Including: LAMP stack development, Wordpress, database design, Git, testing
-
-What I'm doing:
-
-* A freeform entry box where the user can add anything they want.
-    * We could include an example (using Stuart's lightbulb replacement story)
+**Jun 2016** The old list of fields have been removed. Interests and skills are now stored directly in the database to make it easier to change and add more. The form it automatically generated.
 
 
 
@@ -213,9 +149,10 @@ What I'm doing:
 | Implement form	| Chris Gardiner-Bill	| Pam French		|10/4/2016|   TBA |
 | Internal testing	| Chris Gardiner-Bill	| Core Group	| TBA		|TBA | 
 | Market/advertise audit	| TTM Communications Officer	| Pam French		|TBA| TBA |  
-| Launch project	| TTM Programme Officer	| Pam French	| TBA		| xx/05/2016|  
-| Post-launch review/lessons learnt	| TTM Programme Officer	| Pam French	| TBA		| xx/05/2016|  
-| On-going maintenance	| Chris Gardiner-Bill	| Pam French	| TBA		|TBA| 
+| Launch project	| TTM Programme Officer	| Pam French	| 23/06/2016		| 26/06/2016|  
+| Post-launch review/lessons learnt	| TTM Programme Officer	| Pam French	| 17/07/2016	| 17/07/2016|  
+| On-going maintenance	| Chris Gardiner-Bill	| Pam French	| TBA		|TBA|
+| Develop front-end report | Chris Gardiner-Bill | Pam French	| 22/06/2016 | 26/06/2016 |
 [Skills Audit project plan]
 
 ### Capturing data
@@ -277,7 +214,7 @@ The ttm_members table will contain information about individual members.
 | Subscription	| Notes if the member has consented to be contacted by TTM| TEXT	| |
 [ttm_members table schema]  
 
-
+**Note**: Password field added to support authentication.
 
 #### Skills ####
 
@@ -293,7 +230,7 @@ The ttm_skills table will contain the skills.
 
 #### Members:Skills ####
 
-A relational table to match members to skills. Members can can many skills.
+A relational table to match members to skills. Members can have many skills.
 
 | Field	| Description	| Type	|  
 |  ------	| ------	| ------	|  
@@ -328,14 +265,21 @@ A relational table to match members to interests. Members can have many interest
 
 #### Member Notes ####
 
-This table will hold notes about members. Notes are used to add additional information about a member. Some system events will also trigger the creation of notes such as a status change or similar.
+This table will hold notes about members. Notes are used to add additional information about a member. Notes will be automatically created by the system when the following event is triggered:
+
+* A new member is created
+* A password reset is requested
+* A member updates their personal information
+* A member completes the skills audit
 
 | Field	| Description	| Type |  
 |  ------	| ------	| ------	|  
 | ID	| Unique identified	| INT (Primary, AutoIncrement)  |  
 | User	| Foreign Key (Members:ID)	| INT	|
 | Note	| The note text	| TEXT	|  
-| Creator	| Foreign Key (Users:ID)	| INT	|  
+| Creator	| The name of the creator. Defaults to system	| TEXT	|  
 | Created Date	| The date the note was created	| DATETIME	|  
 | Edited Date	| The date the note was last edited	| DATETIME	|  |  
 [Member notes schema] 
+
+

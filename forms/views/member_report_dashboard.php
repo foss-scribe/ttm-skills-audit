@@ -1,48 +1,31 @@
 <h1>Our members</h1>
 
-<p>This page provides an overview of our members. The data is member-provided and is updated in real-time. All data is anonymised and is gathered and presented in accordance with our privacy policy.</p>
+<p>This page provides an overview of our members. TTM is made up of a broad spectrum of people living with the City of Maroondah and beyond.</p>
 
-<p>Collecting and displaying this data allows us (and others) to understand what issues are important to Transition Town Maroondah members. The more data we have, the better we understand our members and the wider Maroondah community at large.</p>
+<p>The information we present here is member-provided and is updated automatically whenever a new member joins, updates their profile or completes our skills and interests audit. All information is anonymised and is gathered and presented in accordance with our privacy policy to remove all information that can be used to identify an individual.</p>
 
-
-<h2>Demographics</h2>
-
-<p>No. TTM members: <?php echo $noMembers; ?></p>
-
-<!--
-<pre>
-<?php print_r($suburbs); ?>
-</pre>
--->
-
-<div id="chart_Suburb"></div>
-
-
-<!--
-<pre><?php print_r($interests); ?></pre>
--->
-
+<!-- Row with two columns for Demographics -->
 <div class="row">
-
-<h2>Skills and Interests</h2>
-
-<p>No. completed skills audit: <?php echo $noCompletedSkillsAudit; ?></p>
-
-<div class="col-md-6">
-
-<div id="graph_Interests"></div>
-
+	<h2>Demographics</h2>
+	<div class="col-md-6">
+		<h3>Quick facts</h3>
+		<p>No. of TTM members: <?php echo $noMembers; ?></p>
+		<p>No. who completed the skills audit: <?php echo $noCompletedSkillsAudit; ?></p>
+	</div>
+	<div class="col-md-6">
+		<div id="chart_Suburb"></div>
+	</div>
 </div>
 
-<div class="col-md-6">
-
-<!--
-<pre><?php print_r($skills); ?></pre>
--->
-
-<div id="graph_Skills"></div>
-
-</div>
+<!-- Row with two columns for skills and interests widgets -->
+<div class="row">
+	<h2>Skills and Interests</h2>
+	<div class="col-md-6">
+		<div id="graph_Interests"></div>
+	</div>
+	<div class="col-md-6">
+		<div id="graph_Skills"></div>
+	</div>
 
 </div>
 

@@ -1,14 +1,13 @@
 <h1>Become a member of Transition Towns Maroondah!</h1>
 
-<p>Transmission Towns Maroondah (TTM) membership is open to anyone who wishes to be part of our community. Please join us and help make Maroondah a more resilient and sustainable community in face of the growing challenges caused by Climate Change, Peak Oil, rising energy prices and Globalisation.</p>
+<p>Transmission Towns Maroondah (TTM) membership is open to <strong>individuals<sup>*</sup></strong> who wish to be part of our community. Please join us and help make Maroondah a more resilient and sustainable community in face of the growing challenges caused by Climate Change, Peak Oil, rising energy prices and Globalisation. Members receive TTM updates about events, a monthly newsletter (coming soon) and more!</p>
 
-<p>Members receive TTM updates about events, a monthly newsletter (coming soon!) and more!</p>
+<p><sup>*</sup>We are currently reviewing how organisations can be part of, or work with, TTM and are looking at potential models for partnership. If you represent a local business, school or community group and wish to join or form a partnership, please contact us directly.</p>
+
 
 <form id="memberForm" method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>">
 
 <h3>Your Details</h3>
-
-
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">First Name</label>
@@ -62,6 +61,7 @@
 		<option value="TTM Event">TTM Event</option>
 		<option value="TTM Website">TTM Website</option>
 		<option value="TTM Facebook Page">TTM Facebook Page</option>
+		<option value="TTM Twitter Feed">TTM Twitter Feed</option>
 		<option value="Web search">Web search</option>
 		<option value="Word-of-mouth">Word-of-mouth</option>
 		<option value="Other">Other...</option>
