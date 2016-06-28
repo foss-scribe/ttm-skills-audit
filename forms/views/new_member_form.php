@@ -5,7 +5,7 @@
 <p><sup>*</sup>We are currently reviewing how organisations can be part of, or work with, TTM and are looking at potential models for partnership. If you represent a local business, school or community group and wish to join or form a partnership, please contact us directly.</p>
 
 
-<form id="memberForm" method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>">
+<form id="memberForm" method="post" action="<?php echo $_SERVER['PHP_SELF'] ;?>">
 
 <h3>Your Details</h3>
 

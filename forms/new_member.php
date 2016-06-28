@@ -12,6 +12,28 @@ include('inc/db.class.php');
 
 $db = new DB();
 
+if (!$db->error == "") {
+	
+
+	$message['title'] = "Internal error";
+	$message['body'] = "<p>We're sorry, our site has experienced an internal error. Please try again later.</p>";
+
+	if ( logSystemError($db->error, "Database") == false) {
+		$message['body'] .= "<p>Additionally there was an error attempting to notify the administrator.</p>";
+		$message['body'] .= "<p>Please <a href='mailto:admin@ttm.org.au?subject=" . $message['title'] . ":%20" . preg_replace('/\s+/', '%20', $db->error) . "'>email us directly</p>";
+	} else {
+		$message['body'] .= "<p>This incident has been reported and will be addressed as soon as possible.</p>";
+
+	}
+
+	require_once('views/header.php');
+	require_once('views/message.php');
+	require_once('views/footer.php');
+
+	die();
+}
+
+
 $data['page_title'] = "TTM: New Member Form";
 
 if (isset($_POST['g-recaptcha-response']) ) {

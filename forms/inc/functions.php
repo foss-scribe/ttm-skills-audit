@@ -33,6 +33,25 @@ function resetPassword($email, $date, $db) {
 
 }
 
+function logSystemError($errorMessage, $errorType) {
+
+	$subject = $errorType . ": " . $errorMessage;
+	$message = "TTM page " . $_SERVER['PHP_SELF'] . " experienced an error: \n\n";
+	$message .= $subject;
+	$headers = "From: admin@ttm.org.au";
+
+	if (!mail(SYSEMAIL, $subject, $message, $headers)) {
+		return false;
+	} else {
+		return true;
+
+	}
+
+	
+
+
+}
+
 function createNote($member, $note, $creator, $date, $db) {
 
 	$db->query('INSERT INTO ttm_member_notes (member, note, creator, date_created) values (:MemberID, :Note, :Creator, :Date_Created)');
