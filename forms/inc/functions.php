@@ -90,7 +90,7 @@ function updateNote($member, $note, $editor, $dateModified, $db) {
 */
 function processSkills($dataType, $db) {
 	//instantiate empty array
-	$processedItems = [];
+	$processedItems = [ ];
 
 	switch ($dataType) {
 		case 'skills':

@@ -54,6 +54,7 @@ $skills = processSkills("skills", $db);
 
 //process suburb data
 $suburbs = array(
+	"Bayswater" => 0,
 	"Bayswater North" => 0,
 	"Croydon" => 0,
 	"Croydon Hills" => 0,
