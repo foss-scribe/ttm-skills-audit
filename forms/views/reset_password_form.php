@@ -2,7 +2,7 @@
 
 <p>Enter your email below to reset your password.</p>
 
-<form method="post" action="<?php echo $_SERVER[PHP_SELF] ;?>" class="form-horizontal">
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ;?>" class="form-horizontal">
 
 <div class="form-group">
 	<label for="email" class="col-sm-2 control-label">Email Address</label>
