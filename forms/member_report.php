@@ -39,7 +39,7 @@ $data['page_title'] = "TTM: Member Report";
 
 
 //retrieve member data
-$db->query('SELECT * FROM ttm_members');
+$db->query("SELECT * FROM ttm_members WHERE membership_status = 'active' ");
 $db->execute();
 $noMembers = $db->rowCount();
 $ttmMembers = $db->resultset();
